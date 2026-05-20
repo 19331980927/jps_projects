@@ -1,0 +1,12 @@
+/* ARM Cortex-M3 linker script for STM32F103 */
+#include "memory.ldf"
+
+ENTRY(Reset_Handler)
+
+SECTIONS {
+    .isr_vector : { KEEP(*(.isr_vector)) } > flash
+    .text : { *(.text*) *(.rodata*) } > flash
+    .data : { __DATA_ROM = LOADADDR(.data); __DATA_RAM = .; *(.data*) . = ALIGN(4); __DATA_END = .; } > ram AT > flash
+    .bss : { __BSS_START = .; *(.bss*) *(COMMON) . = ALIGN(4); __BSS_END = .; } > ram
+    __STACK_TOP = ORIGIN(ram) + LENGTH(ram);
+}

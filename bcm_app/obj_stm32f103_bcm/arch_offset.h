@@ -1,0 +1,13 @@
+#define EXC_FRM_R0 0
+#define EXC_FRM_R1 4
+#define EXC_FRM_R2 8
+#define EXC_FRM_R3 12
+#define EXC_FRM_R12 16
+#define EXC_FRM_LR 20
+#define EXC_FRM_PC 24
+#define EXC_FRM_PSR 28
+#define STACK_APA 32
+#define STACK_CURR 0
+#define STACK_CURR_TOP 4
+#define STACK_CURR_SIZE 8
+#define TASK_CONST 64

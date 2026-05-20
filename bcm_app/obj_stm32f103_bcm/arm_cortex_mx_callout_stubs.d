@@ -1,0 +1,20 @@
+arm_cortex_mx_callout_stubs.o: \
+ D:/AutoSAR_Project/classic-platform-master/system/Os/osal/arm/armv7_m/kernel/arm_cortex_mx_callout_stubs.c \
+ D:/AutoSAR_Project/classic-platform-master/system/Os/rtos/inc/Os.h \
+ D:/AutoSAR_Project/classic-platform-master/include/Std_Types.h \
+ D:/AutoSAR_Project/classic-platform-master/include/Platform_Types.h \
+ D:/AutoSAR_Project/classic-platform-master/base/compiler/Compiler.h \
+ D:/AutoSAR_Project/classic-platform-master/base/compiler/Compiler_Arc.h \
+ D:/AutoSAR_Project/classic-platform-master/base/compiler/Compiler_Cfg.h \
+ D:/AutoSAR_Project/classic-platform-master/include/arc_assert.h \
+ D:/AutoSAR_Project/classic-platform-master/boards/stm32f103_bcm/config/Os_Cfg.h \
+ D:/AutoSAR_Project/classic-platform-master/integration/MemMap.h \
+ D:/AutoSAR_Project/classic-platform-master/integration/Arc_MemMap.h \
+ D:/AutoSAR_Project/classic-platform-master/include/arm/Cpu.h \
+ D:/AutoSAR_Project/classic-platform-master/mcal/arch/stm32/src/contrib/STM32F10x_StdPeriph_Driver/inc/core_cmInstr.h \
+ D:/AutoSAR_Project/classic-platform-master/mcal/arch/stm32/src/contrib/STM32F10x_StdPeriph_Driver/inc/stm32f10x.h \
+ D:/AutoSAR_Project/classic-platform-master/mcal/arch/stm32/src/contrib/STM32F10x_StdPeriph_Driver/inc/core_cm3.h \
+ D:/AutoSAR_Project/classic-platform-master/mcal/arch/stm32/src/contrib/STM32F10x_StdPeriph_Driver/inc/system_stm32f10x.h \
+ D:/AutoSAR_Project/classic-platform-master/include/sys/queue.h \
+ D:/AutoSAR_Project/classic-platform-master/include/rte/Rte_Os_Type.h \
+ D:/AutoSAR_Project/classic-platform-master/system/Os/rtos/inc/os_peripheral_i.h

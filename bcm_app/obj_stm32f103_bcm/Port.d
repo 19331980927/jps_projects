@@ -1,0 +1,15 @@
+Port.o: \
+ D:/AutoSAR_Project/classic-platform-master/mcal/arch/stm32/src/Port.c \
+ D:/AutoSAR_Project/classic-platform-master/mcal/Port/inc/Port.h \
+ D:/AutoSAR_Project/classic-platform-master/include/Std_Types.h \
+ D:/AutoSAR_Project/classic-platform-master/include/Platform_Types.h \
+ D:/AutoSAR_Project/classic-platform-master/base/compiler/Compiler.h \
+ D:/AutoSAR_Project/classic-platform-master/base/compiler/Compiler_Arc.h \
+ D:/AutoSAR_Project/classic-platform-master/base/compiler/Compiler_Cfg.h \
+ D:/AutoSAR_Project/classic-platform-master/include/arm/armv7_m/Port_ConfigTypes.h \
+ D:/AutoSAR_Project/classic-platform-master/mcal/arch/stm32/src/contrib/STM32F10x_StdPeriph_Driver/inc/stm32f10x.h \
+ D:/AutoSAR_Project/classic-platform-master/mcal/arch/stm32/src/contrib/STM32F10x_StdPeriph_Driver/inc/core_cm3.h \
+ D:/AutoSAR_Project/classic-platform-master/mcal/arch/stm32/src/contrib/STM32F10x_StdPeriph_Driver/inc/system_stm32f10x.h \
+ D:/AutoSAR_Project/classic-platform-master/mcal/arch/stm32/src/contrib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_gpio.h \
+ D:/AutoSAR_Project/classic-platform-master/mcal/arch/stm32/src/contrib/STM32F10x_StdPeriph_Driver/inc/stm32f10x.h \
+ D:/AutoSAR_Project/classic-platform-master/mcal/arch/stm32/src/contrib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_rcc.h

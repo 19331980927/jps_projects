@@ -1,0 +1,7 @@
+# 用 MSYS2 已安装的 arm-none-eabi-gdb：
+arm-none-eabi-gdb binaries/stm32f103_bcm/bcm_app.elf
+# 在 GDB 中：
+(gdb) target remote localhost:2331
+(gdb) monitor reset
+(gdb) load
+(gdb) continue

@@ -1,0 +1,33 @@
+os_trap.o: \
+ D:/AutoSAR_Project/classic-platform-master/system/Os/rtos/integration/os_trap.c \
+ D:/AutoSAR_Project/classic-platform-master/system/Os/rtos/integration/os_trap.h \
+ D:/AutoSAR_Project/classic-platform-master/system/Os/rtos/inc/Os.h \
+ D:/AutoSAR_Project/classic-platform-master/include/Std_Types.h \
+ D:/AutoSAR_Project/classic-platform-master/include/Platform_Types.h \
+ D:/AutoSAR_Project/classic-platform-master/base/compiler/Compiler.h \
+ D:/AutoSAR_Project/classic-platform-master/base/compiler/Compiler_Arc.h \
+ D:/AutoSAR_Project/classic-platform-master/base/compiler/Compiler_Cfg.h \
+ D:/AutoSAR_Project/classic-platform-master/include/arc_assert.h \
+ D:/AutoSAR_Project/classic-platform-master/boards/stm32f103_bcm/config/Os_Cfg.h \
+ D:/AutoSAR_Project/classic-platform-master/integration/MemMap.h \
+ D:/AutoSAR_Project/classic-platform-master/integration/Arc_MemMap.h \
+ D:/AutoSAR_Project/classic-platform-master/include/arm/Cpu.h \
+ D:/AutoSAR_Project/classic-platform-master/mcal/arch/stm32/src/contrib/STM32F10x_StdPeriph_Driver/inc/core_cmInstr.h \
+ D:/AutoSAR_Project/classic-platform-master/mcal/arch/stm32/src/contrib/STM32F10x_StdPeriph_Driver/inc/stm32f10x.h \
+ D:/AutoSAR_Project/classic-platform-master/mcal/arch/stm32/src/contrib/STM32F10x_StdPeriph_Driver/inc/core_cm3.h \
+ D:/AutoSAR_Project/classic-platform-master/mcal/arch/stm32/src/contrib/STM32F10x_StdPeriph_Driver/inc/system_stm32f10x.h \
+ D:/AutoSAR_Project/classic-platform-master/include/sys/queue.h \
+ D:/AutoSAR_Project/classic-platform-master/include/rte/Rte_Os_Type.h \
+ D:/AutoSAR_Project/classic-platform-master/system/Os/rtos/inc/os_peripheral_i.h \
+ D:/AutoSAR_Project/classic-platform-master/include/irq.h \
+ D:/AutoSAR_Project/classic-platform-master/system/Os/osal/arm/armv7_m/kernel/irq_types.h \
+ D:/AutoSAR_Project/classic-platform-master/include/bit.h \
+ D:/AutoSAR_Project/classic-platform-master/clib/stdio.h \
+ D:/AutoSAR_Project/classic-platform-master/clib/clib.h \
+ D:/AutoSAR_Project/classic-platform-master/include/device.h \
+ D:/AutoSAR_Project/classic-platform-master/include/fs.h \
+ D:/AutoSAR_Project/classic-platform-master/include/device.h \
+ D:/AutoSAR_Project/classic-platform-master/system/Os/rtos/inc/os_peripheral_i.h \
+ D:/AutoSAR_Project/classic-platform-master/include/isr.h \
+ D:/AutoSAR_Project/classic-platform-master/include/sys/queue.h \
+ D:/AutoSAR_Project/classic-platform-master/system/Os/rtos/integration/os_trap.h

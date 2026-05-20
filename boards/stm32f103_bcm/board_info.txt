@@ -1,0 +1,30 @@
+
+The STMicroelectronics STM32F103 is an ARM 32-bit Cortex-M3 Microcontroller.
+Common variants: STM32F103C8 (Blue Pill), STM32F103VE, STM32F103ZE.
+
+Datasheets:
+  STM32F103x8/xB (Medium Density):
+    http://www.st.com/resource/en/datasheet/stm32f103c8.pdf
+  STM32F103xC/xD/xE (High Density):
+    http://www.st.com/resource/en/datasheet/stm32f103ve.pdf
+
+Info:
+  STM32F103
+  72MHz
+  64KB to 512KB Flash (configured for HD: 512KB)
+  20KB to 64KB SRAM (configured for HD: 64KB)
+  2 x SPIs,
+  2 x I2Cs,
+  5 x USARTs,
+  1 x CAN (bxCAN),
+  3 x 16-bit timers (general purpose),
+  2 x basic timers,
+  2 x advanced timers,
+  1 x PWM timer,
+  2 x ADCs (10 channels),
+  USB Device
+
+Memory Map:
+ 0x0800_0000 -> Flash
+ 0x2000_0000 -> SRAM
+ 0x4000_0000 -> Internal registers

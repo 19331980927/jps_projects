@@ -1,0 +1,1265 @@
+
+Merging object attributes
+
+
+Discarded input sections
+
+ .text          0x00000000        0x0 startup_cmx.o
+ .data          0x00000000        0x0 startup_cmx.o
+ .bss           0x00000000        0x0 startup_cmx.o
+ .text          0x00000000        0x0 stm32f10x_rcc.o
+ .data          0x00000000        0x0 stm32f10x_rcc.o
+ .bss           0x00000000        0x0 stm32f10x_rcc.o
+ .rodata        0x00000000       0x14 stm32f10x_rcc.o
+ .text.RCC_DeInit
+                0x00000000       0x5c stm32f10x_rcc.o
+ .text.RCC_HSEConfig
+                0x00000000       0x7c stm32f10x_rcc.o
+ .text.RCC_WaitForHSEStartUp
+                0x00000000       0x50 stm32f10x_rcc.o
+ .text.RCC_AdjustHSICalibrationValue
+                0x00000000       0x4c stm32f10x_rcc.o
+ .text.RCC_HSICmd
+                0x00000000       0x34 stm32f10x_rcc.o
+ .text.RCC_PLLConfig
+                0x00000000       0xe0 stm32f10x_rcc.o
+ .text.RCC_PLLCmd
+                0x00000000       0x34 stm32f10x_rcc.o
+ .text.RCC_SYSCLKConfig
+                0x00000000       0x54 stm32f10x_rcc.o
+ .text.RCC_GetSYSCLKSource
+                0x00000000       0x1c stm32f10x_rcc.o
+ .text.RCC_HCLKConfig
+                0x00000000       0x78 stm32f10x_rcc.o
+ .text.RCC_PCLK1Config
+                0x00000000       0x68 stm32f10x_rcc.o
+ .text.RCC_PCLK2Config
+                0x00000000       0x68 stm32f10x_rcc.o
+ .text.RCC_ITConfig
+                0x00000000       0x7c stm32f10x_rcc.o
+ .text.RCC_USBCLKConfig
+                0x00000000       0x34 stm32f10x_rcc.o
+ .text.RCC_ADCCLKConfig
+                0x00000000       0x60 stm32f10x_rcc.o
+ .text.RCC_LSEConfig
+                0x00000000       0x5c stm32f10x_rcc.o
+ .text.RCC_LSICmd
+                0x00000000       0x34 stm32f10x_rcc.o
+ .text.RCC_RTCCLKConfig
+                0x00000000       0x44 stm32f10x_rcc.o
+ .text.RCC_RTCCLKCmd
+                0x00000000       0x34 stm32f10x_rcc.o
+ .text.RCC_GetClocksFreq
+                0x00000000      0x16c stm32f10x_rcc.o
+ .text.RCC_AHBPeriphClockCmd
+                0x00000000       0x74 stm32f10x_rcc.o
+ .text.RCC_APB2PeriphClockCmd
+                0x00000000       0x74 stm32f10x_rcc.o
+ .text.RCC_APB1PeriphClockCmd
+                0x00000000       0x74 stm32f10x_rcc.o
+ .text.RCC_APB2PeriphResetCmd
+                0x00000000       0x74 stm32f10x_rcc.o
+ .text.RCC_APB1PeriphResetCmd
+                0x00000000       0x74 stm32f10x_rcc.o
+ .text.RCC_BackupResetCmd
+                0x00000000       0x34 stm32f10x_rcc.o
+ .text.RCC_ClockSecuritySystemCmd
+                0x00000000       0x34 stm32f10x_rcc.o
+ .text.RCC_MCOConfig
+                0x00000000       0x48 stm32f10x_rcc.o
+ .text.RCC_GetFlagStatus
+                0x00000000       0xc0 stm32f10x_rcc.o
+ .text.RCC_ClearFlag
+                0x00000000       0x1c stm32f10x_rcc.o
+ .text.RCC_GetITStatus
+                0x00000000       0x64 stm32f10x_rcc.o
+ .text.RCC_ClearITPendingBit
+                0x00000000       0x38 stm32f10x_rcc.o
+ .debug_info    0x00000000      0xb95 stm32f10x_rcc.o
+ .debug_abbrev  0x00000000      0x200 stm32f10x_rcc.o
+ .debug_loc     0x00000000      0x9e8 stm32f10x_rcc.o
+ .debug_aranges
+                0x00000000      0x118 stm32f10x_rcc.o
+ .debug_ranges  0x00000000      0x108 stm32f10x_rcc.o
+ .debug_line    0x00000000      0xbe9 stm32f10x_rcc.o
+ .debug_str     0x00000000      0x69e stm32f10x_rcc.o
+ .comment       0x00000000       0x13 stm32f10x_rcc.o
+ .debug_frame   0x00000000      0x488 stm32f10x_rcc.o
+ .ARM.attributes
+                0x00000000       0x2d stm32f10x_rcc.o
+ .text          0x00000000        0x0 Os_Cfg.o
+ .data          0x00000000        0x0 Os_Cfg.o
+ .bss           0x00000000        0x0 Os_Cfg.o
+ .debug_info    0x00000000       0x79 Os_Cfg.o
+ .debug_abbrev  0x00000000       0x26 Os_Cfg.o
+ .debug_aranges
+                0x00000000       0x18 Os_Cfg.o
+ .debug_line    0x00000000       0x70 Os_Cfg.o
+ .debug_str     0x00000000      0x1c4 Os_Cfg.o
+ .comment       0x00000000       0x13 Os_Cfg.o
+ .ARM.attributes
+                0x00000000       0x2d Os_Cfg.o
+ .text          0x00000000        0x0 arc_assert.o
+ .data          0x00000000        0x0 arc_assert.o
+ .bss           0x00000000        0x0 arc_assert.o
+ .text.Arc_Assert
+                0x00000000       0x1a arc_assert.o
+ .text.Arc_Config_Assert
+                0x00000000       0x1a arc_assert.o
+ .debug_info    0x00000000      0x16a arc_assert.o
+ .debug_abbrev  0x00000000       0xbf arc_assert.o
+ .debug_loc     0x00000000       0xa0 arc_assert.o
+ .debug_aranges
+                0x00000000       0x28 arc_assert.o
+ .debug_ranges  0x00000000       0x18 arc_assert.o
+ .debug_line    0x00000000      0x193 arc_assert.o
+ .debug_str     0x00000000      0x208 arc_assert.o
+ .comment       0x00000000       0x13 arc_assert.o
+ .debug_frame   0x00000000       0x58 arc_assert.o
+ .ARM.attributes
+                0x00000000       0x2d arc_assert.o
+ .text          0x00000000        0x0 Mcu.o
+ .data          0x00000000        0x0 Mcu.o
+ .bss           0x00000000        0x4 Mcu.o
+ .text.__DSB    0x00000000       0x10 Mcu.o
+ .text.NVIC_SystemReset
+                0x00000000       0x24 Mcu.o
+ .text.Mcu_Init
+                0x00000000       0x94 Mcu.o
+ .text.Mcu_GetVersionInfo
+                0x00000000       0x36 Mcu.o
+ .text.Mcu_GetPllStatus
+                0x00000000       0x1a Mcu.o
+ .text.Mcu_PerformReset
+                0x00000000        0xc Mcu.o
+ .debug_info    0x00000000      0x5ac Mcu.o
+ .debug_abbrev  0x00000000      0x1f5 Mcu.o
+ .debug_loc     0x00000000      0x174 Mcu.o
+ .debug_aranges
+                0x00000000       0x48 Mcu.o
+ .debug_ranges  0x00000000       0x38 Mcu.o
+ .debug_line    0x00000000      0x314 Mcu.o
+ .debug_str     0x00000000      0x48f Mcu.o
+ .comment       0x00000000       0x13 Mcu.o
+ .debug_frame   0x00000000       0xd0 Mcu.o
+ .ARM.attributes
+                0x00000000       0x2d Mcu.o
+ .text          0x00000000        0x0 Mcu_Lcfg.o
+ .data          0x00000000        0x0 Mcu_Lcfg.o
+ .bss           0x00000000        0x0 Mcu_Lcfg.o
+ .rodata        0x00000000        0x4 Mcu_Lcfg.o
+ .debug_info    0x00000000       0xda Mcu_Lcfg.o
+ .debug_abbrev  0x00000000       0x6f Mcu_Lcfg.o
+ .debug_aranges
+                0x00000000       0x18 Mcu_Lcfg.o
+ .debug_line    0x00000000      0x16b Mcu_Lcfg.o
+ .debug_str     0x00000000      0x1f8 Mcu_Lcfg.o
+ .comment       0x00000000       0x13 Mcu_Lcfg.o
+ .ARM.attributes
+                0x00000000       0x2d Mcu_Lcfg.o
+ .text          0x00000000        0x0 Port.o
+ .data          0x00000000        0x0 Port.o
+ .bss           0x00000000        0x0 Port.o
+ .text.Port_Init
+                0x00000000       0x64 Port.o
+ .text.Port_SetPinDirection
+                0x00000000       0x58 Port.o
+ .text.Port_GetVersionInfo
+                0x00000000       0x36 Port.o
+ .debug_info    0x00000000      0x712 Port.o
+ .debug_abbrev  0x00000000      0x190 Port.o
+ .debug_loc     0x00000000       0xfc Port.o
+ .debug_aranges
+                0x00000000       0x30 Port.o
+ .debug_ranges  0x00000000       0x20 Port.o
+ .debug_line    0x00000000      0x2eb Port.o
+ .debug_str     0x00000000      0x702 Port.o
+ .comment       0x00000000       0x13 Port.o
+ .debug_frame   0x00000000       0x80 Port.o
+ .ARM.attributes
+                0x00000000       0x2d Port.o
+ .text          0x00000000        0x0 arm_cortex_mx_handlers.o
+ .data          0x00000000        0x0 arm_cortex_mx_handlers.o
+ .bss           0x00000000        0x0 arm_cortex_mx_handlers.o
+ .text.Os_Callout_Startup
+                0x00000000        0xc arm_cortex_mx_handlers.o
+ .text.Os_Callout_Shutdown
+                0x00000000        0x8 arm_cortex_mx_handlers.o
+ .text.Os_Callout_PreTask
+                0x00000000        0xc arm_cortex_mx_handlers.o
+ .text.Os_Callout_PostTask
+                0x00000000        0xc arm_cortex_mx_handlers.o
+ .text.Os_Callout_Idle
+                0x00000000        0xc arm_cortex_mx_handlers.o
+ .text          0x00000000        0x0 arm_cortex_mx_callout_stubs.o
+ .data          0x00000000        0x0 arm_cortex_mx_callout_stubs.o
+ .bss           0x00000000        0x0 arm_cortex_mx_callout_stubs.o
+ .text.Os_Callout_Startup
+                0x00000000        0xc arm_cortex_mx_callout_stubs.o
+ .text.Os_Callout_Shutdown
+                0x00000000        0x8 arm_cortex_mx_callout_stubs.o
+ .text.Os_Callout_PreTask
+                0x00000000        0xc arm_cortex_mx_callout_stubs.o
+ .text.Os_Callout_PostTask
+                0x00000000        0xc arm_cortex_mx_callout_stubs.o
+ .text.Os_Callout_Idle
+                0x00000000        0xc arm_cortex_mx_callout_stubs.o
+ .text.Irq_SOI  0x00000000        0xc arm_cortex_mx_callout_stubs.o
+ .text.Irq_EOI  0x00000000        0xc arm_cortex_mx_callout_stubs.o
+ .text          0x00000000        0x0 Dio.o
+ .data          0x00000000        0x0 Dio.o
+ .bss           0x00000000        0x0 Dio.o
+ .text.Dio_WriteChannel
+                0x00000000       0x4c Dio.o
+ .text.Dio_ReadChannel
+                0x00000000       0x44 Dio.o
+ .text.Dio_ReadChannelGroup
+                0x00000000       0x40 Dio.o
+ .text.Dio_WriteChannelGroup
+                0x00000000       0x38 Dio.o
+ .text.Dio_GetVersionInfo
+                0x00000000       0x36 Dio.o
+ .debug_info    0x00000000      0x449 Dio.o
+ .debug_abbrev  0x00000000      0x1ad Dio.o
+ .debug_loc     0x00000000      0x19c Dio.o
+ .debug_aranges
+                0x00000000       0x40 Dio.o
+ .debug_ranges  0x00000000       0x30 Dio.o
+ .debug_line    0x00000000      0x2fd Dio.o
+ .debug_str     0x00000000      0x3b1 Dio.o
+ .comment       0x00000000       0x13 Dio.o
+ .debug_frame   0x00000000       0xc8 Dio.o
+ .ARM.attributes
+                0x00000000       0x2d Dio.o
+ .data          0x00000000        0x0 arch_krn.o
+ .bss           0x00000000        0x0 arch_krn.o
+ .text          0x00000000        0x0 os_event.o
+ .data          0x00000000        0x0 os_event.o
+ .bss           0x00000000        0x0 os_event.o
+ .text.__disable_irq
+                0x00000000        0xe os_event.o
+ .text._Irq_Save
+                0x00000000       0x1a os_event.o
+ .text._Irq_Restore
+                0x00000000       0x16 os_event.o
+ .text.Os_SysTaskGetCurr
+                0x00000000       0x14 os_event.o
+ .text.Os_SysIntAnyDisabled
+                0x00000000       0x30 os_event.o
+ .text.Os_TaskGet
+                0x00000000       0x28 os_event.o
+ .text.Os_TaskOccupiesResources
+                0x00000000       0x20 os_event.o
+ .text.Os_CallErrorHook
+                0x00000000       0x14 os_event.o
+ .rodata        0x00000000       0x7a os_event.o
+ .text.WaitEvent
+                0x00000000      0x110 os_event.o
+ .text.SetEvent
+                0x00000000      0x168 os_event.o
+ .text.GetEvent
+                0x00000000      0x10c os_event.o
+ .text.ClearEvent
+                0x00000000       0xc4 os_event.o
+ .debug_info    0x00000000      0xee3 os_event.o
+ .debug_abbrev  0x00000000      0x2f6 os_event.o
+ .debug_loc     0x00000000      0x3c0 os_event.o
+ .debug_aranges
+                0x00000000       0x78 os_event.o
+ .debug_ranges  0x00000000       0x68 os_event.o
+ .debug_line    0x00000000      0x531 os_event.o
+ .debug_str     0x00000000      0xf07 os_event.o
+ .comment       0x00000000       0x13 os_event.o
+ .debug_frame   0x00000000      0x1d4 os_event.o
+ .ARM.attributes
+                0x00000000       0x2d os_event.o
+ .text          0x00000000        0x0 os_init.o
+ .data          0x00000000        0x0 os_init.o
+ .bss           0x00000000       0x70 os_init.o
+ .text.__disable_irq
+                0x00000000        0xe os_init.o
+ .text.Os_SysIntClearAll
+                0x00000000       0x20 os_init.o
+ .text.Os_TaskGet
+                0x00000000       0x28 os_init.o
+ .text.Os_SystemFlagsSave
+                0x00000000       0x2c os_init.o
+ .text.copyPcbParts
+                0x00000000       0x32 os_init.o
+ .text.InitOS   0x00000000       0xec os_init.o
+ .rodata        0x00000000       0xae os_init.o
+ .text.os_start
+                0x00000000       0xf0 os_init.o
+ .text.StartOS  0x00000000       0x3c os_init.o
+ .text.ShutdownOS
+                0x00000000       0x18 os_init.o
+ .text          0x00000000        0x0 arch.o
+ .data          0x00000000        0x0 arch.o
+ .bss           0x00000000        0x0 arch.o
+ .text.__enable_irq
+                0x00000000        0xe arch.o
+ .text.__disable_irq
+                0x00000000        0xe arch.o
+ .text.NVIC_SetPriority
+                0x00000000       0x54 arch.o
+ .text.SysTick_Config
+                0x00000000       0x44 arch.o
+ .text.arch_init
+                0x00000000       0x18 arch.o
+ .text.arch_enable_interrupts
+                0x00000000        0xc arch.o
+ .text.arch_disable_interrupts
+                0x00000000        0xc arch.o
+ .debug_info    0x00000000      0x6ac arch.o
+ .debug_abbrev  0x00000000      0x1ba arch.o
+ .debug_loc     0x00000000      0x1b8 arch.o
+ .debug_aranges
+                0x00000000       0x50 arch.o
+ .debug_ranges  0x00000000       0x40 arch.o
+ .debug_line    0x00000000      0x2af arch.o
+ .debug_str     0x00000000      0x6fe arch.o
+ .comment       0x00000000       0x13 arch.o
+ .debug_frame   0x00000000       0xf0 arch.o
+ .ARM.attributes
+                0x00000000       0x2d arch.o
+ .text          0x00000000        0x0 os_task.o
+ .data          0x00000000        0x0 os_task.o
+ .bss           0x00000000       0x90 os_task.o
+ .text.__disable_irq
+                0x00000000        0xe os_task.o
+ .text._Irq_Save
+                0x00000000       0x1a os_task.o
+ .text._Irq_Restore
+                0x00000000       0x16 os_task.o
+ .text.Os_SysTaskSetCurr
+                0x00000000       0x1c os_task.o
+ .text.Os_SysTaskGetCurr
+                0x00000000       0x14 os_task.o
+ .text.Os_SysIntAnyDisabled
+                0x00000000       0x30 os_task.o
+ .text.Os_SysIntClearAll
+                0x00000000       0x20 os_task.o
+ .text.Os_SchedulerResourceIsFree
+                0x00000000       0x24 os_task.o
+ .text.Os_TaskMakeRunning
+                0x00000000       0x18 os_task.o
+ .text.Os_TaskGet
+                0x00000000       0x28 os_task.o
+ .rodata        0x00000000      0x38e os_task.o
+ .text.Os_TaskResourceRemove
+                0x00000000       0xa4 os_task.o
+ .text.Os_TaskResourceFreeAll
+                0x00000000       0x2e os_task.o
+ .text.Os_StackGetUsage
+                0x00000000       0x38 os_task.o
+ .text.Os_StackSetStartmark
+                0x00000000       0x26 os_task.o
+ .text.Os_StackSetEndmark
+                0x00000000       0x1e os_task.o
+ .text.Os_TaskOccupiesResources
+                0x00000000       0x20 os_task.o
+ .text.Os_CallErrorHook
+                0x00000000       0x14 os_task.o
+ .text.Os_TaskRunningToReady
+                0x00000000       0x30 os_task.o
+ .text.Os_ReadyQRemove
+                0x00000000       0x4c os_task.o
+ .text.Os_ReadyQEnqueue
+                0x00000000       0x38 os_task.o
+ .text.Os_TaskMakeSuspended
+                0x00000000       0x3c os_task.o
+ .text.Os_Arc_SetCleanContext
+                0x00000000       0x42 os_task.o
+ .text.Os_TaskMakeReady
+                0x00000000       0x28 os_task.o
+ .text.Os_TaskMakeWaiting
+                0x00000000       0x3c os_task.o
+ .text.Os_StackFill
+                0x00000000       0x48 os_task.o
+ .text.Os_TaskStartExtended
+                0x00000000       0x46 os_task.o
+ .text.Os_TaskStartBasic
+                0x00000000        0xc os_task.o
+ .text.Os_StackSetup
+                0x00000000       0x64 os_task.o
+ .text.Os_TaskContextInit
+                0x00000000       0x4a os_task.o
+ .text.Os_TaskGetTop
+                0x00000000       0x98 os_task.o
+ .text.Os_TaskStartFromBeginning
+                0x00000000       0x48 os_task.o
+ .text.Os_Dispatch
+                0x00000000      0x244 os_task.o
+ .text.Os_TaskSwapContext
+                0x00000000       0x38 os_task.o
+ .text.Os_TaskSwapContextTo
+                0x00000000       0x4c os_task.o
+ .text.Os_Arc_GetStackInfo
+                0x00000000       0x78 os_task.o
+ .text.GetTaskState
+                0x00000000       0xe4 os_task.o
+ .text.GetTaskID
+                0x00000000       0x5c os_task.o
+ .text.ActivateTask
+                0x00000000      0x134 os_task.o
+ .text.TerminateTask
+                0x00000000       0xa0 os_task.o
+ .text.ChainTask
+                0x00000000      0x164 os_task.o
+ .text.Schedule
+                0x00000000       0xe0 os_task.o
+ .text.Os_Arc_GetTaskInfo
+                0x00000000       0x84 os_task.o
+ .text.Os_StackPerformCheck
+                0x00000000       0x12 os_task.o
+ .debug_info    0x00000000     0x17a0 os_task.o
+ .debug_abbrev  0x00000000      0x407 os_task.o
+ .debug_loc     0x00000000      0xd94 os_task.o
+ .debug_aranges
+                0x00000000      0x170 os_task.o
+ .debug_ranges  0x00000000      0x160 os_task.o
+ .debug_line    0x00000000      0xc53 os_task.o
+ .debug_str     0x00000000     0x1348 os_task.o
+ .comment       0x00000000       0x13 os_task.o
+ .debug_frame   0x00000000      0x638 os_task.o
+ .ARM.attributes
+                0x00000000       0x2d os_task.o
+ .text          0x00000000        0x0 os_resource.o
+ .data          0x00000000        0x0 os_resource.o
+ .bss           0x00000000       0x30 os_resource.o
+ .text.__disable_irq
+                0x00000000        0xe os_resource.o
+ .text._Irq_Save
+                0x00000000       0x1a os_resource.o
+ .text._Irq_Restore
+                0x00000000       0x16 os_resource.o
+ .text.Os_SysTaskGetCurr
+                0x00000000       0x14 os_resource.o
+ .text.Os_SysIntAnyDisabled
+                0x00000000       0x30 os_resource.o
+ .text.Os_ResourceGet
+                0x00000000       0x16 os_resource.o
+ .text.Os_TaskResourceAdd
+                0x00000000       0x56 os_resource.o
+ .rodata        0x00000000      0x186 os_resource.o
+ .text.Os_TaskResourceRemove
+                0x00000000       0xa4 os_resource.o
+ .text.Os_CallErrorHook
+                0x00000000       0x14 os_resource.o
+ .text.GetResource
+                0x00000000      0x114 os_resource.o
+ .text.ReleaseResource
+                0x00000000      0x168 os_resource.o
+ .text.Os_ResourceGetInternal
+                0x00000000       0x2a os_resource.o
+ .text.Os_ResourceReleaseInternal
+                0x00000000       0x2a os_resource.o
+ .text.Os_ResourceInit
+                0x00000000       0x38 os_resource.o
+ .debug_info    0x00000000      0xf3e os_resource.o
+ .debug_abbrev  0x00000000      0x310 os_resource.o
+ .debug_loc     0x00000000      0x43c os_resource.o
+ .debug_aranges
+                0x00000000       0x88 os_resource.o
+ .debug_ranges  0x00000000       0x78 os_resource.o
+ .debug_line    0x00000000      0x5df os_resource.o
+ .debug_str     0x00000000      0xf4e os_resource.o
+ .comment       0x00000000       0x13 os_resource.o
+ .debug_frame   0x00000000      0x204 os_resource.o
+ .ARM.attributes
+                0x00000000       0x2d os_resource.o
+ .text          0x00000000        0x0 os_alarm.o
+ .data          0x00000000        0x0 os_alarm.o
+ .bss           0x00000000        0x0 os_alarm.o
+ .debug_info    0x00000000       0x80 os_alarm.o
+ .debug_abbrev  0x00000000       0x26 os_alarm.o
+ .debug_aranges
+                0x00000000       0x18 os_alarm.o
+ .debug_line    0x00000000       0x69 os_alarm.o
+ .debug_str     0x00000000      0x1c3 os_alarm.o
+ .comment       0x00000000       0x13 os_alarm.o
+ .ARM.attributes
+                0x00000000       0x2d os_alarm.o
+ .text          0x00000000        0x0 os_sched_table.o
+ .data          0x00000000        0x0 os_sched_table.o
+ .bss           0x00000000        0x0 os_sched_table.o
+ .text.__disable_irq
+                0x00000000        0xe os_sched_table.o
+ .text._Irq_Save
+                0x00000000       0x1a os_sched_table.o
+ .text._Irq_Restore
+                0x00000000       0x16 os_sched_table.o
+ .text.Os_SysIntAnyDisabled
+                0x00000000       0x30 os_sched_table.o
+ .text.Os_CounterGetMaxValue
+                0x00000000       0x16 os_sched_table.o
+ .text.Os_CounterGetValue
+                0x00000000       0x16 os_sched_table.o
+ .text.Os_CounterAdd
+                0x00000000       0x40 os_sched_table.o
+ .text.Os_SchTblGet
+                0x00000000       0x16 os_sched_table.o
+ .text.Os_SchTblGetInitialOffset
+                0x00000000       0x18 os_sched_table.o
+ .text.Os_SchTblGetFinalOffset
+                0x00000000       0x2c os_sched_table.o
+ .text.Os_CallErrorHook
+                0x00000000       0x14 os_sched_table.o
+ .rodata        0x00000000       0xa5 os_sched_table.o
+ .text.Os_SchTblUpdateState
+                0x00000000      0x1d0 os_sched_table.o
+ .text.StartScheduleTableRel
+                0x00000000       0xc8 os_sched_table.o
+ .text.StartScheduleTableAbs
+                0x00000000       0x68 os_sched_table.o
+ .text.StopScheduleTable
+                0x00000000       0x5c os_sched_table.o
+ .text.NextScheduleTable
+                0x00000000       0x6c os_sched_table.o
+ .text.GetScheduleTableStatus
+                0x00000000       0x68 os_sched_table.o
+ .text.Os_SchTblCheck
+                0x00000000       0xd6 os_sched_table.o
+ .text.Os_SchTblInit
+                0x00000000        0xc os_sched_table.o
+ .text.Os_SchTblAutostart
+                0x00000000        0xc os_sched_table.o
+ .debug_info    0x00000000      0xfae os_sched_table.o
+ .debug_abbrev  0x00000000      0x370 os_sched_table.o
+ .debug_loc     0x00000000      0x664 os_sched_table.o
+ .debug_aranges
+                0x00000000       0xb8 os_sched_table.o
+ .debug_ranges  0x00000000       0xa8 os_sched_table.o
+ .debug_line    0x00000000      0x72e os_sched_table.o
+ .debug_str     0x00000000     0x107c os_sched_table.o
+ .comment       0x00000000       0x13 os_sched_table.o
+ .debug_frame   0x00000000      0x2f4 os_sched_table.o
+ .ARM.attributes
+                0x00000000       0x2d os_sched_table.o
+ .text          0x00000000        0x0 os_counter.o
+ .data          0x00000000        0x0 os_counter.o
+ .bss           0x00000000        0x0 os_counter.o
+ .text.__disable_irq
+                0x00000000        0xe os_counter.o
+ .text._Irq_Save
+                0x00000000       0x1a os_counter.o
+ .text._Irq_Restore
+                0x00000000       0x16 os_counter.o
+ .text.Os_SysIntAnyDisabled
+                0x00000000       0x30 os_counter.o
+ .text.Os_CounterGetMaxValue
+                0x00000000       0x16 os_counter.o
+ .text.Os_CounterGet
+                0x00000000       0x14 os_counter.o
+ .text.Os_CounterDiff
+                0x00000000       0x32 os_counter.o
+ .text.Os_CounterAdd
+                0x00000000       0x40 os_counter.o
+ .text.Os_CallErrorHook
+                0x00000000       0x14 os_counter.o
+ .text.IsCounterValid
+                0x00000000       0x14 os_counter.o
+ .text.IncrementCounter
+                0x00000000       0xc4 os_counter.o
+ .text.GetCounterValue
+                0x00000000       0xcc os_counter.o
+ .text.GetElapsedValue
+                0x00000000      0x17c os_counter.o
+ .text.OsTick   0x00000000        0xc os_counter.o
+ .text.GetOsTick
+                0x00000000       0x14 os_counter.o
+ .text.Os_CounterInit
+                0x00000000        0xc os_counter.o
+ .debug_info    0x00000000     0x150c os_counter.o
+ .debug_abbrev  0x00000000      0x2ce os_counter.o
+ .debug_loc     0x00000000      0x50c os_counter.o
+ .debug_aranges
+                0x00000000       0x98 os_counter.o
+ .debug_ranges  0x00000000       0x88 os_counter.o
+ .debug_line    0x00000000      0x57c os_counter.o
+ .debug_str     0x00000000     0x1315 os_counter.o
+ .comment       0x00000000       0x13 os_counter.o
+ .debug_frame   0x00000000      0x258 os_counter.o
+ .ARM.attributes
+                0x00000000       0x2d os_counter.o
+ .text          0x00000000        0x0 sys_tick.o
+ .data          0x00000000        0x0 sys_tick.o
+ .bss           0x00000000        0x0 sys_tick.o
+ .text.os_sys_tick_handler
+                0x00000000        0xc sys_tick.o
+ .debug_info    0x00000000       0x4c sys_tick.o
+ .debug_abbrev  0x00000000       0x43 sys_tick.o
+ .debug_loc     0x00000000       0x2c sys_tick.o
+ .debug_aranges
+                0x00000000       0x20 sys_tick.o
+ .debug_ranges  0x00000000       0x10 sys_tick.o
+ .debug_line    0x00000000       0x8d sys_tick.o
+ .debug_str     0x00000000      0x15b sys_tick.o
+ .comment       0x00000000       0x13 sys_tick.o
+ .debug_frame   0x00000000       0x2c sys_tick.o
+ .ARM.attributes
+                0x00000000       0x2d sys_tick.o
+ .text          0x00000000        0x0 os_isr.o
+ .data          0x00000000        0x0 os_isr.o
+ .bss           0x00000000      0x220 os_isr.o
+ .text.__enable_irq
+                0x00000000        0xe os_isr.o
+ .text.__disable_irq
+                0x00000000        0xe os_isr.o
+ .text.Os_SysTaskGetCurr
+                0x00000000       0x14 os_isr.o
+ .text.Os_SysIsrGetCurr
+                0x00000000       0x14 os_isr.o
+ .text.Os_SysIntAnyDisabled
+                0x00000000       0x30 os_isr.o
+ .text.Os_SysIntClearAll
+                0x00000000       0x20 os_isr.o
+ .text.Os_ApplGetCore
+                0x00000000       0x28 os_isr.o
+ .text.Os_CallErrorHook
+                0x00000000       0x14 os_isr.o
+ .text.Os_CheckISRinstalled
+                0x00000000       0x28 os_isr.o
+ .rodata        0x00000000       0xd4 os_isr.o
+ .text.Os_GetIsrVarType
+                0x00000000       0x6c os_isr.o
+ .text.Os_IsrAddWithId
+                0x00000000       0x8c os_isr.o
+ .text.Os_IsrInit
+                0x00000000       0xb0 os_isr.o
+ .text.Os_IsrAdd
+                0x00000000       0x9c os_isr.o
+ .text.Os_IsrRemove
+                0x00000000       0x30 os_isr.o
+ .text.Os_IsrGetStackInfo
+                0x00000000       0x24 os_isr.o
+ .text.Os_IsrGet
+                0x00000000       0x44 os_isr.o
+ .text.Os_IsrGetApplicationOwner
+                0x00000000       0x40 os_isr.o
+ .text.Os_Isr   0x00000000      0x154 os_isr.o
+ .text.Os_Arc_GetIsrInfo
+                0x00000000       0x42 os_isr.o
+ .text.Os_Arc_GetIsrCount
+                0x00000000       0x18 os_isr.o
+ .text.GetISRID
+                0x00000000       0x50 os_isr.o
+ .debug_info    0x00000000     0x113f os_isr.o
+ .debug_abbrev  0x00000000      0x3f0 os_isr.o
+ .debug_loc     0x00000000      0x684 os_isr.o
+ .debug_aranges
+                0x00000000       0xc0 os_isr.o
+ .debug_ranges  0x00000000       0xb0 os_isr.o
+ .debug_line    0x00000000      0x6f0 os_isr.o
+ .debug_str     0x00000000      0xa4f os_isr.o
+ .comment       0x00000000       0x13 os_isr.o
+ .debug_frame   0x00000000      0x30c os_isr.o
+ .ARM.attributes
+                0x00000000       0x2d os_isr.o
+ .text          0x00000000        0x0 os_application.o
+ .data          0x00000000        0x0 os_application.o
+ .bss           0x00000000       0x4c os_application.o
+ .text.Os_ResourceGetApplicationOwner
+                0x00000000       0x1c os_application.o
+ .text.Os_TaskGetApplicationOwner
+                0x00000000       0x38 os_application.o
+ .text.Os_CounterGetApplicationOwner
+                0x00000000       0x1a os_application.o
+ .text.Os_AlarmGetApplicationOwner
+                0x00000000       0x1c os_application.o
+ .text.Os_SchTblGetApplicationOwner
+                0x00000000       0x1c os_application.o
+ .text.CheckObjectOwnership
+                0x00000000       0x9c os_application.o
+ .text.GetActiveApplicationMode
+                0x00000000       0x20 os_application.o
+ .text.Os_ApplStart
+                0x00000000       0x80 os_application.o
+ .debug_info    0x00000000      0xc84 os_application.o
+ .debug_abbrev  0x00000000      0x211 os_application.o
+ .debug_loc     0x00000000      0x2d4 os_application.o
+ .debug_aranges
+                0x00000000       0x58 os_application.o
+ .debug_ranges  0x00000000       0x48 os_application.o
+ .debug_line    0x00000000      0x38a os_application.o
+ .debug_str     0x00000000      0x8ee os_application.o
+ .comment       0x00000000       0x13 os_application.o
+ .debug_frame   0x00000000      0x14c os_application.o
+ .ARM.attributes
+                0x00000000       0x2d os_application.o
+ .text          0x00000000        0x0 os_panic.o
+ .data          0x00000000        0x0 os_panic.o
+ .bss           0x00000000        0x0 os_panic.o
+ .text.Os_CallProtectionHook
+                0x00000000       0x1a os_panic.o
+ .text.Os_Arc_Panic
+                0x00000000       0x24 os_panic.o
+ .debug_info    0x00000000      0x180 os_panic.o
+ .debug_abbrev  0x00000000       0xcb os_panic.o
+ .debug_loc     0x00000000       0xa0 os_panic.o
+ .debug_aranges
+                0x00000000       0x28 os_panic.o
+ .debug_ranges  0x00000000       0x18 os_panic.o
+ .debug_line    0x00000000      0x1b9 os_panic.o
+ .debug_str     0x00000000      0x266 os_panic.o
+ .comment       0x00000000       0x13 os_panic.o
+ .debug_frame   0x00000000       0x58 os_panic.o
+ .ARM.attributes
+                0x00000000       0x2d os_panic.o
+ .text          0x00000000        0x0 os_trap.o
+ .data          0x00000000        0x0 os_trap.o
+ .bss           0x00000000        0x0 os_trap.o
+ .debug_info    0x00000000       0x79 os_trap.o
+ .debug_abbrev  0x00000000       0x26 os_trap.o
+ .debug_aranges
+                0x00000000       0x18 os_trap.o
+ .debug_line    0x00000000       0x70 os_trap.o
+ .debug_str     0x00000000      0x1c4 os_trap.o
+ .comment       0x00000000       0x13 os_trap.o
+ .ARM.attributes
+                0x00000000       0x2d os_trap.o
+ .text          0x00000000        0x0 os_peripheral.o
+ .data          0x00000000        0x0 os_peripheral.o
+ .bss           0x00000000        0x0 os_peripheral.o
+ .text.Os_ReadPeripheral8
+                0x00000000       0x22 os_peripheral.o
+ .text.Os_ReadPeripheral16
+                0x00000000       0x22 os_peripheral.o
+ .text.Os_ReadPeripheral32
+                0x00000000       0x22 os_peripheral.o
+ .text.Os_WritePeripheral8
+                0x00000000       0x22 os_peripheral.o
+ .text.Os_WritePeripheral16
+                0x00000000       0x22 os_peripheral.o
+ .text.Os_WritePeripheral32
+                0x00000000       0x20 os_peripheral.o
+ .text.Os_ModifyPeripheral8
+                0x00000000       0x38 os_peripheral.o
+ .text.Os_ModifyPeripheral16
+                0x00000000       0x38 os_peripheral.o
+ .text.Os_ModifyPeripheral32
+                0x00000000       0x2c os_peripheral.o
+ .debug_info    0x00000000      0x42f os_peripheral.o
+ .debug_abbrev  0x00000000       0xa9 os_peripheral.o
+ .debug_loc     0x00000000      0x33c os_peripheral.o
+ .debug_aranges
+                0x00000000       0x60 os_peripheral.o
+ .debug_ranges  0x00000000       0x50 os_peripheral.o
+ .debug_line    0x00000000      0x291 os_peripheral.o
+ .debug_str     0x00000000      0x31a os_peripheral.o
+ .comment       0x00000000       0x13 os_peripheral.o
+ .debug_frame   0x00000000      0x178 os_peripheral.o
+ .ARM.attributes
+                0x00000000       0x2d os_peripheral.o
+ .text          0x00000000        0x0 irq.o
+ .data          0x00000000        0x0 irq.o
+ .bss           0x00000000        0x0 irq.o
+ .text.Irq_Init
+                0x00000000        0xc irq.o
+ .text.Irq_Entry
+                0x00000000       0x14 irq.o
+ .debug_info    0x00000000       0xcd irq.o
+ .debug_abbrev  0x00000000       0x7c irq.o
+ .debug_loc     0x00000000       0xa0 irq.o
+ .debug_aranges
+                0x00000000       0x28 irq.o
+ .debug_ranges  0x00000000       0x18 irq.o
+ .debug_line    0x00000000       0x9a irq.o
+ .debug_str     0x00000000      0x1e2 irq.o
+ .comment       0x00000000       0x13 irq.o
+ .debug_frame   0x00000000       0x58 irq.o
+ .ARM.attributes
+                0x00000000       0x2d irq.o
+ .text          0x00000000        0x0 Bcm.o
+ .data          0x00000000        0x0 Bcm.o
+ .bss           0x00000000        0x1 Bcm.o
+ .text.Bcm_Init
+                0x00000000       0x28 Bcm.o
+ .text.Bcm_MainFunction
+                0x00000000       0x34 Bcm.o
+ .debug_info    0x00000000      0x158 Bcm.o
+ .debug_abbrev  0x00000000       0xc6 Bcm.o
+ .debug_loc     0x00000000       0x7c Bcm.o
+ .debug_aranges
+                0x00000000       0x28 Bcm.o
+ .debug_ranges  0x00000000       0x18 Bcm.o
+ .debug_line    0x00000000      0x194 Bcm.o
+ .debug_str     0x00000000      0x26f Bcm.o
+ .comment       0x00000000       0x13 Bcm.o
+ .debug_frame   0x00000000       0x50 Bcm.o
+ .ARM.attributes
+                0x00000000       0x2d Bcm.o
+ .text          0x00000000        0x0 Bcm_Lights.o
+ .data          0x00000000        0x0 Bcm_Lights.o
+ .bss           0x00000000        0x0 Bcm_Lights.o
+ .text.Bcm_LightsInit
+                0x00000000        0xc Bcm_Lights.o
+ .text.Bcm_LightsControl
+                0x00000000       0x14 Bcm_Lights.o
+ .debug_info    0x00000000       0xeb Bcm_Lights.o
+ .debug_abbrev  0x00000000       0x82 Bcm_Lights.o
+ .debug_loc     0x00000000       0xa0 Bcm_Lights.o
+ .debug_aranges
+                0x00000000       0x28 Bcm_Lights.o
+ .debug_ranges  0x00000000       0x18 Bcm_Lights.o
+ .debug_line    0x00000000      0x144 Bcm_Lights.o
+ .debug_str     0x00000000      0x1f9 Bcm_Lights.o
+ .comment       0x00000000       0x13 Bcm_Lights.o
+ .debug_frame   0x00000000       0x58 Bcm_Lights.o
+ .ARM.attributes
+                0x00000000       0x2d Bcm_Lights.o
+ .text          0x00000000        0x0 Bcm_SwInput.o
+ .data          0x00000000        0x0 Bcm_SwInput.o
+ .bss           0x00000000        0xa Bcm_SwInput.o
+ .text.Bcm_SwInputInit
+                0x00000000       0x44 Bcm_SwInput.o
+ .text.Bcm_SwInputRead
+                0x00000000       0xd4 Bcm_SwInput.o
+ .debug_info    0x00000000      0x1cd Bcm_SwInput.o
+ .debug_abbrev  0x00000000       0xce Bcm_SwInput.o
+ .debug_loc     0x00000000       0xac Bcm_SwInput.o
+ .debug_aranges
+                0x00000000       0x28 Bcm_SwInput.o
+ .debug_ranges  0x00000000       0x18 Bcm_SwInput.o
+ .debug_line    0x00000000      0x20f Bcm_SwInput.o
+ .debug_str     0x00000000      0x26f Bcm_SwInput.o
+ .comment       0x00000000       0x13 Bcm_SwInput.o
+ .debug_frame   0x00000000       0x5c Bcm_SwInput.o
+ .ARM.attributes
+                0x00000000       0x2d Bcm_SwInput.o
+ .text          0x00000000        0x0 Bcm_CanApp.o
+ .data          0x00000000        0x0 Bcm_CanApp.o
+ .bss           0x00000000        0x0 Bcm_CanApp.o
+ .text.Bcm_CanAppInit
+                0x00000000        0xc Bcm_CanApp.o
+ .text.Bcm_CanAppRxProcess
+                0x00000000        0xc Bcm_CanApp.o
+ .text.Bcm_CanAppTxProcess
+                0x00000000        0xc Bcm_CanApp.o
+ .debug_info    0x00000000       0xca Bcm_CanApp.o
+ .debug_abbrev  0x00000000       0x46 Bcm_CanApp.o
+ .debug_loc     0x00000000       0xcc Bcm_CanApp.o
+ .debug_aranges
+                0x00000000       0x30 Bcm_CanApp.o
+ .debug_ranges  0x00000000       0x20 Bcm_CanApp.o
+ .debug_line    0x00000000       0x96 Bcm_CanApp.o
+ .debug_str     0x00000000      0x1eb Bcm_CanApp.o
+ .comment       0x00000000       0x13 Bcm_CanApp.o
+ .debug_frame   0x00000000       0x70 Bcm_CanApp.o
+ .ARM.attributes
+                0x00000000       0x2d Bcm_CanApp.o
+ .text          0x00000000        0x0 cirq_buffer.o
+ .data          0x00000000        0x0 cirq_buffer.o
+ .bss           0x00000000        0x0 cirq_buffer.o
+ .text.__enable_irq
+                0x00000000        0xe cirq_buffer.o
+ .text.__disable_irq
+                0x00000000        0xe cirq_buffer.o
+ .text.SuspendOSInterrupts
+                0x00000000       0x24 cirq_buffer.o
+ .text.ResumeOSInterrupts
+                0x00000000       0x38 cirq_buffer.o
+ .text.CirqBuff_Init
+                0x00000000       0x52 cirq_buffer.o
+ .text.CirqBuffStatCreate
+                0x00000000       0x52 cirq_buffer.o
+ .text.CirqBuffDynCreate
+                0x00000000       0x72 cirq_buffer.o
+ .text.CirqBuffDynDestroy
+                0x00000000       0x22 cirq_buffer.o
+ .text.CirqBuffPush
+                0x00000000       0x76 cirq_buffer.o
+ .text.CirqBuffPop
+                0x00000000       0x72 cirq_buffer.o
+ .text.CirqBuff_PushLock
+                0x00000000       0x52 cirq_buffer.o
+ .text.CirqBuff_PopLock
+                0x00000000       0x4e cirq_buffer.o
+ .text.CirqBuff_Peek
+                0x00000000       0x66 cirq_buffer.o
+ .debug_info    0x00000000      0x48f cirq_buffer.o
+ .debug_abbrev  0x00000000      0x173 cirq_buffer.o
+ .debug_loc     0x00000000      0x3ee cirq_buffer.o
+ .debug_aranges
+                0x00000000       0x80 cirq_buffer.o
+ .debug_ranges  0x00000000       0x70 cirq_buffer.o
+ .debug_line    0x00000000      0x568 cirq_buffer.o
+ .debug_str     0x00000000      0x35c cirq_buffer.o
+ .comment       0x00000000       0x13 cirq_buffer.o
+ .debug_frame   0x00000000      0x1e4 cirq_buffer.o
+ .ARM.attributes
+                0x00000000       0x2d cirq_buffer.o
+ .text          0x00000000        0x0 version.o
+ .data          0x00000000        0x0 version.o
+ .bss           0x00000000        0x0 version.o
+ .rodata        0x00000000       0xac version.o
+ .debug_info    0x00000000       0xa7 version.o
+ .debug_abbrev  0x00000000       0x7e version.o
+ .debug_aranges
+                0x00000000       0x18 version.o
+ .debug_line    0x00000000       0x9c version.o
+ .debug_str     0x00000000      0x165 version.o
+ .comment       0x00000000       0x13 version.o
+ .ARM.attributes
+                0x00000000       0x2d version.o
+ .text          0x00000000        0x0 clib_port.o
+ .data          0x00000000      0x114 clib_port.o
+ .bss           0x00000000     0x3e84 clib_port.o
+ .text.newFileNo
+                0x00000000       0x4c clib_port.o
+ .text.validFileNo
+                0x00000000       0x38 clib_port.o
+ .text.findDeviceByName
+                0x00000000       0x60 clib_port.o
+ .text.fileno   0x00000000       0x16 clib_port.o
+ .text._open    0x00000000       0x7c clib_port.o
+ .text.fstat    0x00000000       0x1e clib_port.o
+ .text._getpid  0x00000000        0xe clib_port.o
+ .text._kill    0x00000000       0x20 clib_port.o
+ .text._close   0x00000000       0xa0 clib_port.o
+ .text._isatty  0x00000000       0x14 clib_port.o
+ .rodata        0x00000000       0x19 clib_port.o
+ .text._sbrk    0x00000000       0x60 clib_port.o
+ .text._read    0x00000000       0xf0 clib_port.o
+ .text._write   0x00000000       0xbc clib_port.o
+ .text._lseek   0x00000000       0xc0 clib_port.o
+ .text.__init   0x00000000        0xc clib_port.o
+ .text._exit    0x00000000       0x12 clib_port.o
+ .debug_info    0x00000000      0xd8a clib_port.o
+ .debug_abbrev  0x00000000      0x2f5 clib_port.o
+ .debug_loc     0x00000000      0x50c clib_port.o
+ .debug_aranges
+                0x00000000       0x98 clib_port.o
+ .debug_ranges  0x00000000       0x88 clib_port.o
+ .debug_line    0x00000000      0x5ec clib_port.o
+ .debug_str     0x00000000      0x598 clib_port.o
+ .comment       0x00000000       0x13 clib_port.o
+ .debug_frame   0x00000000      0x260 clib_port.o
+ .ARM.attributes
+                0x00000000       0x2d clib_port.o
+ .text          0x00000000        0x0 printf.o
+ .data          0x00000000        0x0 printf.o
+ .bss           0x00000000        0x0 printf.o
+ .text.fputc    0x00000000       0x30 printf.o
+ .text.fputs    0x00000000       0x2e printf.o
+ .text.fgetc    0x00000000       0x28 printf.o
+ .text.fgets    0x00000000       0x2a printf.o
+ .text.printf   0x00000000       0x34 printf.o
+ .text.fprintf  0x00000000       0x2c printf.o
+ .text.sprintf  0x00000000       0x30 printf.o
+ .text.snprintf
+                0x00000000       0x30 printf.o
+ .text.vprintf  0x00000000       0x28 printf.o
+ .text.vsprintf
+                0x00000000       0x24 printf.o
+ .text.vfprintf
+                0x00000000       0x2a printf.o
+ .text.vsnprintf
+                0x00000000       0x2c printf.o
+ .text.emitChar
+                0x00000000       0x60 printf.o
+ .text.emitString
+                0x00000000       0xda printf.o
+ .text.emitInt  0x00000000       0x58 printf.o
+ .rodata        0x00000000        0x7 printf.o
+ .text.print    0x00000000      0x29c printf.o
+ .debug_info    0x00000000      0xa03 printf.o
+ .debug_abbrev  0x00000000      0x24b printf.o
+ .debug_loc     0x00000000      0x591 printf.o
+ .debug_aranges
+                0x00000000       0x98 printf.o
+ .debug_ranges  0x00000000       0x88 printf.o
+ .debug_line    0x00000000      0x573 printf.o
+ .debug_str     0x00000000      0x363 printf.o
+ .comment       0x00000000       0x13 printf.o
+ .debug_frame   0x00000000      0x2a4 printf.o
+ .ARM.attributes
+                0x00000000       0x2d printf.o
+ .text          0x00000000        0x0 xtoa.o
+ .data          0x00000000        0x0 xtoa.o
+ .bss           0x00000000        0x0 xtoa.o
+ .rodata        0x00000000       0x11 xtoa.o
+ .text.xtoa     0x00000000       0xc4 xtoa.o
+ .text.ultoa    0x00000000       0x20 xtoa.o
+ .text.itoa     0x00000000       0x26 xtoa.o
+ .debug_info    0x00000000      0x190 xtoa.o
+ .debug_abbrev  0x00000000       0xcd xtoa.o
+ .debug_loc     0x00000000       0xfc xtoa.o
+ .debug_aranges
+                0x00000000       0x30 xtoa.o
+ .debug_ranges  0x00000000       0x20 xtoa.o
+ .debug_line    0x00000000      0x13b xtoa.o
+ .debug_str     0x00000000      0x1c9 xtoa.o
+ .comment       0x00000000       0x13 xtoa.o
+ .debug_frame   0x00000000       0x80 xtoa.o
+ .ARM.attributes
+                0x00000000       0x2d xtoa.o
+ .text          0x00000000        0x0 stm32f10x_gpio.o
+ .data          0x00000000        0x0 stm32f10x_gpio.o
+ .bss           0x00000000        0x0 stm32f10x_gpio.o
+ .text.GPIO_DeInit
+                0x00000000      0x128 stm32f10x_gpio.o
+ .text.GPIO_AFIODeInit
+                0x00000000       0x18 stm32f10x_gpio.o
+ .text.GPIO_Init
+                0x00000000      0x25c stm32f10x_gpio.o
+ .text.GPIO_StructInit
+                0x00000000       0x26 stm32f10x_gpio.o
+ .text.GPIO_ReadInputDataBit
+                0x00000000      0x10c stm32f10x_gpio.o
+ .text.GPIO_ReadInputData
+                0x00000000       0x78 stm32f10x_gpio.o
+ .text.GPIO_ReadOutputDataBit
+                0x00000000      0x10c stm32f10x_gpio.o
+ .text.GPIO_ReadOutputData
+                0x00000000       0x78 stm32f10x_gpio.o
+ .text.GPIO_SetBits
+                0x00000000       0x8c stm32f10x_gpio.o
+ .text.GPIO_ResetBits
+                0x00000000       0x8c stm32f10x_gpio.o
+ .text.GPIO_WriteBit
+                0x00000000      0x120 stm32f10x_gpio.o
+ .text.GPIO_Write
+                0x00000000       0x7c stm32f10x_gpio.o
+ .text.GPIO_PinLockConfig
+                0x00000000       0xb4 stm32f10x_gpio.o
+ .text.GPIO_EventOutputConfig
+                0x00000000       0xe0 stm32f10x_gpio.o
+ .text.GPIO_EventOutputCmd
+                0x00000000       0x34 stm32f10x_gpio.o
+ .text.GPIO_PinRemapConfig
+                0x00000000      0x2f8 stm32f10x_gpio.o
+ .text.GPIO_EXTILineConfig
+                0x00000000      0x120 stm32f10x_gpio.o
+ .text.GPIO_ETH_MediaInterfaceConfig
+                0x00000000       0x34 stm32f10x_gpio.o
+ .debug_info    0x00000000      0x8e6 stm32f10x_gpio.o
+ .debug_abbrev  0x00000000      0x250 stm32f10x_gpio.o
+ .debug_loc     0x00000000      0x588 stm32f10x_gpio.o
+ .debug_aranges
+                0x00000000       0xa8 stm32f10x_gpio.o
+ .debug_ranges  0x00000000       0x98 stm32f10x_gpio.o
+ .debug_line    0x00000000      0xc45 stm32f10x_gpio.o
+ .debug_str     0x00000000      0x5b4 stm32f10x_gpio.o
+ .comment       0x00000000       0x13 stm32f10x_gpio.o
+ .debug_frame   0x00000000      0x29c stm32f10x_gpio.o
+ .ARM.attributes
+                0x00000000       0x2d stm32f10x_gpio.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+flash            0x08000000         0x00040000         xr
+ram              0x20000000         0x00010000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+
+.isr_vector     0x08000000       0x40
+ *(.isr_vector)
+ .isr_vector    0x08000000       0x40 startup_cmx.o
+                0x08000000                vector_table
+
+.text           0x08000040       0xe2
+ *(.text)
+ .text          0x08000040        0x8 arch_krn.o
+                0x08000040                Os_ContextSwitch
+                0x08000042                Os_StartFirstTask
+                0x08000044                Os_Tick
+                0x08000046                Os_Schedule
+ *(.text.*)
+ .text.Reset_Handler
+                0x08000048       0x78 startup_cmx.o
+                0x08000048                Reset_Handler
+ .text.Default_Handler
+                0x080000c0        0x8 startup_cmx.o
+                0x080000c0                NMI_Handler
+                0x080000c0                UsageFault_Handler
+                0x080000c0                Default_Handler
+                0x080000c0                MemManage_Handler
+                0x080000c0                BusFault_Handler
+                0x080000c0                DebugMon_Handler
+ .text.HardFault_Handler
+                0x080000c8        0x8 startup_cmx.o
+                0x080000c8                HardFault_Handler
+ .text.SysTick_Handler
+                0x080000d0        0xc arm_cortex_mx_handlers.o
+                0x080000d0                SysTick_Handler
+ .text.PendSV_Handler
+                0x080000dc        0xc arm_cortex_mx_handlers.o
+                0x080000dc                PendSV_Handler
+ .text.SVC_Handler
+                0x080000e8       0x20 arm_cortex_mx_handlers.o
+                0x080000e8                SVC_Handler
+ .text.EcuM_Init
+                0x08000108        0xc arm_cortex_mx_callout_stubs.o
+                0x08000108                EcuM_Init
+ .text.main     0x08000114        0xe os_init.o
+                0x08000114                main
+ *(.rodata)
+ *(.rodata.*)
+
+.glue_7         0x08000124        0x0
+ .glue_7        0x08000124        0x0 linker stubs
+
+.glue_7t        0x08000124        0x0
+ .glue_7t       0x08000124        0x0 linker stubs
+
+.vfp11_veneer   0x08000124        0x0
+ .vfp11_veneer  0x08000124        0x0 linker stubs
+
+.v4_bx          0x08000124        0x0
+ .v4_bx         0x08000124        0x0 linker stubs
+
+.iplt           0x08000124        0x0
+ .iplt          0x08000124        0x0 startup_cmx.o
+
+.rel.dyn        0x08000124        0x0
+ .rel.iplt      0x08000124        0x0 startup_cmx.o
+
+.data           0x20000000        0x0 load address 0x08000122
+                0x08000122                        __DATA_ROM = LOADADDR (.data)
+                0x20000000                        __DATA_RAM = .
+ *(.data)
+ *(.data.*)
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        __DATA_END = .
+
+.igot.plt       0x20000000        0x0 load address 0x08000122
+ .igot.plt      0x20000000        0x0 startup_cmx.o
+
+.bss            0x20000000        0x0 load address 0x08000122
+                0x20000000                        __BSS_START = .
+ *(.bss)
+ *(.bss.*)
+ *(COMMON)
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        __BSS_END = .
+                0x20010000                        __STACK_TOP = (ORIGIN (ram) + LENGTH (ram))
+START GROUP
+LOAD startup_cmx.o
+LOAD stm32f10x_rcc.o
+LOAD Os_Cfg.o
+LOAD arc_assert.o
+LOAD Mcu.o
+LOAD Mcu_Lcfg.o
+LOAD Port.o
+LOAD arm_cortex_mx_handlers.o
+LOAD arm_cortex_mx_callout_stubs.o
+LOAD Dio.o
+LOAD arch_krn.o
+LOAD os_event.o
+LOAD os_init.o
+LOAD arch.o
+LOAD os_task.o
+LOAD os_resource.o
+LOAD os_alarm.o
+LOAD os_sched_table.o
+LOAD os_counter.o
+LOAD sys_tick.o
+LOAD os_isr.o
+LOAD os_application.o
+LOAD os_panic.o
+LOAD os_trap.o
+LOAD os_peripheral.o
+LOAD irq.o
+LOAD Bcm.o
+LOAD Bcm_Lights.o
+LOAD Bcm_SwInput.o
+LOAD Bcm_CanApp.o
+LOAD cirq_buffer.o
+LOAD version.o
+LOAD clib_port.o
+LOAD printf.o
+LOAD xtoa.o
+LOAD stm32f10x_gpio.o
+END GROUP
+OUTPUT(bcm_app.elf elf32-littlearm)
+LOAD linker stubs
+
+.debug_info     0x00000000     0x1405
+ .debug_info    0x00000000      0x1df startup_cmx.o
+ .debug_info    0x000001df      0x16f arm_cortex_mx_handlers.o
+ .debug_info    0x0000034e      0x13d arm_cortex_mx_callout_stubs.o
+ .debug_info    0x0000048b       0x26 arch_krn.o
+ .debug_info    0x000004b1      0xf54 os_init.o
+
+.debug_abbrev   0x00000000      0x532
+ .debug_abbrev  0x00000000      0x10f startup_cmx.o
+ .debug_abbrev  0x0000010f       0x8f arm_cortex_mx_handlers.o
+ .debug_abbrev  0x0000019e       0x46 arm_cortex_mx_callout_stubs.o
+ .debug_abbrev  0x000001e4       0x14 arch_krn.o
+ .debug_abbrev  0x000001f8      0x33a os_init.o
+
+.debug_loc      0x00000000      0x760
+ .debug_loc     0x00000000       0x90 startup_cmx.o
+ .debug_loc     0x00000090      0x1d8 arm_cortex_mx_handlers.o
+ .debug_loc     0x00000268      0x208 arm_cortex_mx_callout_stubs.o
+ .debug_loc     0x00000470      0x2f0 os_init.o
+
+.debug_aranges  0x00000000      0x168
+ .debug_aranges
+                0x00000000       0x30 startup_cmx.o
+ .debug_aranges
+                0x00000030       0x58 arm_cortex_mx_handlers.o
+ .debug_aranges
+                0x00000088       0x58 arm_cortex_mx_callout_stubs.o
+ .debug_aranges
+                0x000000e0       0x20 arch_krn.o
+ .debug_aranges
+                0x00000100       0x68 os_init.o
+
+.debug_ranges   0x00000000      0x108
+ .debug_ranges  0x00000000       0x20 startup_cmx.o
+ .debug_ranges  0x00000020       0x48 arm_cortex_mx_handlers.o
+ .debug_ranges  0x00000068       0x48 arm_cortex_mx_callout_stubs.o
+ .debug_ranges  0x000000b0       0x58 os_init.o
+
+.debug_line     0x00000000      0x99d
+ .debug_line    0x00000000      0x1be startup_cmx.o
+ .debug_line    0x000001be      0x131 arm_cortex_mx_handlers.o
+ .debug_line    0x000002ef      0x11f arm_cortex_mx_callout_stubs.o
+ .debug_line    0x0000040e       0x85 arch_krn.o
+ .debug_line    0x00000493      0x50a os_init.o
+
+.debug_str      0x00000000     0x110f
+ .debug_str     0x00000000     0x110f startup_cmx.o
+                                0x293 (size before relaxing)
+ .debug_str     0x0000110f        0x0 arm_cortex_mx_handlers.o
+                                0x277 (size before relaxing)
+ .debug_str     0x0000110f        0x0 arm_cortex_mx_callout_stubs.o
+                                0x257 (size before relaxing)
+ .debug_str     0x0000110f        0x0 arch_krn.o
+                                 0xab (size before relaxing)
+ .debug_str     0x0000110f        0x0 os_init.o
+                                0xf00 (size before relaxing)
+
+.comment        0x00000000       0x12
+ .comment       0x00000000       0x12 startup_cmx.o
+                                 0x13 (size before relaxing)
+ .comment       0x00000012        0x0 arm_cortex_mx_handlers.o
+                                 0x13 (size before relaxing)
+ .comment       0x00000012        0x0 arm_cortex_mx_callout_stubs.o
+                                 0x13 (size before relaxing)
+ .comment       0x00000012        0x0 os_init.o
+                                 0x13 (size before relaxing)
+
+.ARM.attributes
+                0x00000000       0x2b
+ .ARM.attributes
+                0x00000000       0x2d startup_cmx.o
+ .ARM.attributes
+                0x0000002d       0x2d arm_cortex_mx_handlers.o
+ .ARM.attributes
+                0x0000005a       0x2d arm_cortex_mx_callout_stubs.o
+ .ARM.attributes
+                0x00000087       0x21 arch_krn.o
+ .ARM.attributes
+                0x000000a8       0x2d os_init.o
+
+.debug_frame    0x00000000      0x3d8
+ .debug_frame   0x00000000       0x60 startup_cmx.o
+ .debug_frame   0x00000060      0x100 arm_cortex_mx_handlers.o
+ .debug_frame   0x00000160      0x108 arm_cortex_mx_callout_stubs.o
+ .debug_frame   0x00000268      0x170 os_init.o
