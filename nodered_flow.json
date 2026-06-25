@@ -1,0 +1,270 @@
+[
+    {
+        "id": "e8f8d5b.1f17128",
+        "type": "serial in",
+        "z": "b1c6e8f.d3e9d18",
+        "name": "",
+        "serial": "COM3",
+        "x": 110,
+        "y": 160,
+        "wires": [
+            [
+                "f3a2b4c.5d6e7f8"
+            ]
+        ]
+    },
+    {
+        "id": "f3a2b4c.5d6e7f8",
+        "type": "json",
+        "z": "b1c6e8f.d3e9d18",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 290,
+        "y": 160,
+        "wires": [
+            [
+                "g4h5i6j.7k8l9m0",
+                "n1o2p3q.4r5s6t7",
+                "u8v9w0x.1y2z3a4"
+            ]
+        ]
+    },
+    {
+        "id": "g4h5i6j.7k8l9m0",
+        "type": "function",
+        "z": "b1c6e8f.d3e9d18",
+        "name": "雷达数据处理",
+        "func": "// 存储雷达数据\ncontext.global.radarData = context.global.radarData || [];\n\n// 添加新数据点\nvar angle = msg.payload.angle;\nvar distance = msg.payload.distance;\n\n// 更新对应角度的数据\ncontext.global.radarData[angle] = distance;\n\n// 返回处理后的数据\nmsg.payload = {\n    angle: angle,\n    distance: distance,\n    warning: msg.payload.warning,\n    radarData: context.global.radarData\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 160,
+        "wires": [
+            [
+                "b5c6d7e.8f9g0h1"
+            ]
+        ]
+    },
+    {
+        "id": "b5c6d7e.8f9g0h1",
+        "type": "ui_chart",
+        "z": "b1c6e8f.d3e9d18",
+        "name": "雷达扫描图",
+        "group": "a2b3c4d.5e6f7g8",
+        "order": 1,
+        "width": "12",
+        "height": "8",
+        "label": "雷达扫描图",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": true,
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 670,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "n1o2p3q.4r5s6t7",
+        "type": "ui_gauge",
+        "z": "b1c6e8f.d3e9d18",
+        "name": "距离仪表盘",
+        "group": "a2b3c4d.5e6f7g8",
+        "order": 2,
+        "width": "6",
+        "height": "4",
+        "units": "cm",
+        "min": 0,
+        "max": "100",
+        "name2": "距离",
+        "format": "{{value}}",
+        "layout": "radial",
+        "theme": "theme-light",
+        "x": 470,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "u8v9w0x.1y2z3a4",
+        "type": "ui_text",
+        "z": "b1c6e8f.d3e9d18",
+        "name": "预警提示",
+        "group": "a2b3c4d.5e6f7g8",
+        "order": 3,
+        "width": "6",
+        "height": "2",
+        "name2": "状态",
+        "format": "{{msg.payload.warning ? '⚠️ 警告：障碍物过近！' : '✅ 安全'}}",
+        "layout": "row-spread",
+        "style": {
+            "color": {
+                "value": "{{msg.payload.warning ? 'red' : 'green'}}"
+            },
+            "fontSize": "20px"
+        },
+        "x": 470,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "i9j0k1l.2m3n4o5",
+        "type": "ui_slider",
+        "z": "b1c6e8f.d3e9d18",
+        "name": "角度控制",
+        "label": "舵机角度",
+        "tooltip": "",
+        "group": "a2b3c4d.5e6f7g8",
+        "order": 4,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "min": 0,
+        "max": "180",
+        "step": 1,
+        "topic": "angle",
+        "x": 110,
+        "y": 400,
+        "wires": [
+            [
+                "p6q7r8s.9t0u1v2"
+            ]
+        ]
+    },
+    {
+        "id": "p6q7r8s.9t0u1v2",
+        "type": "function",
+        "z": "b1c6e8f.d3e9d18",
+        "name": "生成角度命令",
+        "func": "msg.payload = JSON.stringify({angle: msg.payload});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 400,
+        "wires": [
+            [
+                "w3x4y5z.6a7b8c9"
+            ]
+        ]
+    },
+    {
+        "id": "w3x4y5z.6a7b8c9",
+        "type": "serial out",
+        "z": "b1c6e8f.d3e9d18",
+        "name": "",
+        "serial": "COM3",
+        "x": 470,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "d0e1f2g.3h4i5j6",
+        "type": "ui_button",
+        "z": "b1c6e8f.d3e9d18",
+        "name": "自动扫描",
+        "group": "a2b3c4d.5e6f7g8",
+        "order": 5,
+        "width": "3",
+        "height": "1",
+        "label": "自动扫描",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "auto",
+        "payloadType": "str",
+        "topic": "mode",
+        "x": 110,
+        "y": 480,
+        "wires": [
+            [
+                "k7l8m9n.0o1p2q3"
+            ]
+        ]
+    },
+    {
+        "id": "r4s5t6u.7v8w9x0",
+        "type": "ui_button",
+        "z": "b1c6e8f.d3e9d18",
+        "name": "手动模式",
+        "group": "a2b3c4d.5e6f7g8",
+        "order": 6,
+        "width": "3",
+        "height": "1",
+        "label": "手动模式",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "manual",
+        "payloadType": "str",
+        "topic": "mode",
+        "x": 110,
+        "y": 540,
+        "wires": [
+            [
+                "k7l8m9n.0o1p2q3"
+            ]
+        ]
+    },
+    {
+        "id": "k7l8m9n.0o1p2q3",
+        "type": "function",
+        "z": "b1c6e8f.d3e9d18",
+        "name": "生成模式命令",
+        "func": "var mode = msg.payload;\nmsg.payload = JSON.stringify({mode: mode});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 510,
+        "wires": [
+            [
+                "w3x4y5z.6a7b8c9"
+            ]
+        ]
+    },
+    {
+        "id": "a2b3c4d.5e6f7g8",
+        "type": "ui_group",
+        "name": "雷达控制面板",
+        "tab": "z1y2x3w.4v5u6t7",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "z1y2x3w.4v5u6t7",
+        "type": "ui_tab",
+        "name": "雷达系统",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]

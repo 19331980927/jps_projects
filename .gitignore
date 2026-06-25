@@ -1,0 +1,30 @@
+# Compiled object files
+Objects/
+*.o
+*.d
+*.crf
+*.lst
+*.htm
+*.lnp
+*.sct
+*.dep
+
+# Build output
+*.axf
+*.hex
+*.bin
+*.elf
+*.lib
+
+# IDE specific files
+*.uvoptx
+*.uvguix.*
+*.uvprojx.bak
+
+# Debug files
+*.dbgconf
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+.DS_Store
