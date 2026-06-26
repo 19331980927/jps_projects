@@ -1,14 +1,3 @@
-# Compiled object files
-Objects/
-*.o
-*.d
-*.crf
-*.lst
-*.htm
-*.lnp
-*.sct
-*.dep
-
 # Build output
 *.axf
 *.hex
@@ -16,10 +5,16 @@ Objects/
 *.elf
 *.lib
 
+# Build directories
+build/
+Objects/
+Listings/
+
 # IDE specific files
 *.uvoptx
 *.uvguix.*
 *.uvprojx.bak
+DebugConfig/
 
 # Debug files
 *.dbgconf
@@ -28,3 +23,19 @@ Objects/
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+# Node-RED
+node_modules/
+package-lock.json
+package.json
+nodered.log
+
+# Compiled object files
+*.o
+*.d
+*.crf
+*.lst
+*.htm
+*.lnp
+*.sct
+*.dep

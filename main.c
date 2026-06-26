@@ -30,6 +30,7 @@ uint8_t scan_mode = 0;  // 0:手动, 1:自动扫描
 uint16_t current_angle = 90;  // 当前角度
 float current_distance = 0;   // 当前距离
 uint8_t warning_flag = 0;    // 预警标志
+uint8_t blocked_flag = 0;    // 遮挡标志: 1=模块被遮挡
 uint16_t scan_data[181];      // 扫描数据缓存(0-180度)
 
 uint8_t display_mode = 1;  // 0:文本显示, 1:雷达图显示
@@ -50,6 +51,59 @@ void Send_Data_To_NodeRED(void);
 
 void OLED_DrawRadarDisplay(void);
 
+// 遮挡检测：连续近距离（< 8cm）判定传感器被遮挡
+// HC-SR04 在 3cm 以内已进入盲区边缘，可信度很低
+static uint8_t check_blocked(float raw)
+{
+    static uint8_t blocked_cnt = 0;   // 连续近距离计数
+    static uint8_t ok_cnt = 0;        // 正常值计数（解除用）
+
+    uint8_t is_close = (raw > 0 && raw < 8.0f) ? 1 : 0;
+    uint8_t is_invalid = (raw < 2.0f) ? 1 : 0;  // 盲区
+
+    if (is_invalid || is_close)
+    {
+        // 本次读数在遮挡区间
+        if (blocked_flag)
+        {
+            // 已遮挡：忽略一切
+            ok_cnt = 0;
+            return 1;
+        }
+        blocked_cnt++;
+        if (blocked_cnt >= 3)
+        {
+            blocked_flag = 1;
+            blocked_cnt = 0;
+            ok_cnt = 0;
+            return 1;
+        }
+        // 还没到阈值，允许回退旧值
+        return 0;
+    }
+
+    // 本次有正常回波
+    if (blocked_flag)
+    {
+        ok_cnt++;
+        if (ok_cnt >= 3)
+        {
+            blocked_flag = 0;
+            ok_cnt = 0;
+        }
+        return 1;  // 还没解除，仍然忽略
+    }
+
+    // 正常状态
+    blocked_cnt = 0;
+    return 0;
+}
+
+// LED blink — 每次调用翻转，~0.5 秒周期（亮 0.25s / 灭 0.25s）
+static void led_blink_toggle(void)
+{
+    LED_Toggle();
+}
 // 清除所有扫描数据
 void Clear_Scan_Data(void)
 {
@@ -154,24 +208,48 @@ void Auto_Scan(void)
     
     Servo_SetAngle(angle);
     current_angle = angle;
-    delay_ms(20);  // 等待舵机稳定
-    
-    current_distance = Ultrasonic_GetDistance();
-    scan_data[angle] = (uint16_t)(current_distance * 10);
+    delay_ms(60);  // 等待舵机稳定
 
-    printf("SCAN a:%d d:%.1f dir:%d\r\n", angle, current_distance, direction);
+    // 读取超声波，遮挡检测
+    {
+        float raw = Ultrasonic_GetDistance();
+        if (check_blocked(raw))
+        {
+            // 传感器被遮挡：忽略读数，LED 闪烁
+            led_blink_toggle();
+            warning_flag = 1;
+        }
+        else if (raw >= 2.0f && raw <= 250.0f)
+        {
+            current_distance = raw;
+            scan_data[angle] = (uint16_t)(raw * 10);
+            if (raw < 30.0f)
+            {
+                warning_flag = 1;
+                LED_On();
+            }
+            else
+            {
+                warning_flag = 0;
+                LED_Off();
+            }
+        }
+        else if (scan_data[angle] > 0 && scan_data[angle] <= 2500)
+        {
+            // 读不到或超限，沿用该角度历史值
+            current_distance = scan_data[angle] / 10.0f;
+            warning_flag = 0;
+            LED_Off();
+        }
+        else
+        {
+            current_distance = 0;
+            warning_flag = 0;
+            LED_Off();
+        }
+    }
 
-    // 预警判断（过滤异常值）
-    if(current_distance > 0 && current_distance < 30)
-    {
-        warning_flag = 1;
-        LED_On();
-    }
-    else
-    {
-        warning_flag = 0;
-        LED_Off();
-    }
+    printf("SCAN a:%d d:%.1f dir:%d blk:%d\r\n", angle, current_distance, direction, blocked_flag);
 }
 
 // 手动控制模式
@@ -194,20 +272,42 @@ void Manual_Control(void)
         }
         Servo_SetAngle(current_angle);
         delay_ms(100);
-        
-        current_distance = Ultrasonic_GetDistance();
-        scan_data[current_angle] = (uint16_t)(current_distance * 10);
 
-        // 预警判断（过滤异常值）
-        if(current_distance > 0 && current_distance < 30)
+        // 读取超声波，遮挡检测
         {
-            warning_flag = 1;
-            LED_On();
-        }
-        else
-        {
-            warning_flag = 0;
-            LED_Off();
+            float raw = Ultrasonic_GetDistance();
+            if (check_blocked(raw))
+            {
+                led_blink_toggle();
+                warning_flag = 1;
+            }
+            else if (raw >= 2.0f && raw <= 250.0f)
+            {
+                current_distance = raw;
+                scan_data[current_angle] = (uint16_t)(raw * 10);
+                if (raw < 30.0f)
+                {
+                    warning_flag = 1;
+                    LED_On();
+                }
+                else
+                {
+                    warning_flag = 0;
+                    LED_Off();
+                }
+            }
+            else if (scan_data[current_angle] > 0 && scan_data[current_angle] <= 2500)
+            {
+                current_distance = scan_data[current_angle] / 10.0f;
+                warning_flag = 0;
+                LED_Off();
+            }
+            else
+            {
+                current_distance = 0;
+                warning_flag = 0;
+                LED_Off();
+            }
         }
     }
 }
@@ -229,9 +329,14 @@ void OLED_Display(void)
         sprintf(buf, "ANG  %3d", current_angle);
         OLED_ShowString(0, 0, buf, 16);
 
-        // 第2-3行：距离
-        sprintf(buf, "DIS  %3d", (int)current_distance);
-        OLED_ShowString(0, 2, buf, 16);
+        // 第2-3行：距离（被遮挡时显示 BLOCKED）
+        if (blocked_flag)
+            OLED_ShowString(0, 2, "BLOCKED!", 16);
+        else
+        {
+            sprintf(buf, "DIS  %3d", (int)current_distance);
+            OLED_ShowString(0, 2, buf, 16);
+        }
 
         // 第4-5行：模式
         if(scan_mode)
@@ -258,8 +363,8 @@ void Send_Data_To_NodeRED(void)
 {
     char json_buf[128];
     
-    sprintf(json_buf, "{\"angle\":%d,\"distance\":%.1f,\"warning\":%d,\"display_mode\":%d}",
-            current_angle, current_distance, warning_flag, display_mode);
+    sprintf(json_buf, "{\"angle\":%d,\"distance\":%.1f,\"warning\":%d,\"blocked\":%d,\"display_mode\":%d}",
+            current_angle, current_distance, warning_flag, blocked_flag, display_mode);
     
     printf("%s\r\n", json_buf);
 }
@@ -283,8 +388,13 @@ void OLED_DrawRadarDisplay(void)
     OLED_DrawRadar(64, 32, 30, scan_data, current_angle, scan_trail, trail_count, 200);
 
     char buf[16];
-    sprintf(buf, "A:%d D:%.0f", current_angle, current_distance);
-    OLED_ShowString(0, 0, buf, 16);
+    if (blocked_flag)
+        OLED_ShowString(0, 0, "BLOCKED!", 16);
+    else
+    {
+        sprintf(buf, "A:%d D:%.0f", current_angle, current_distance);
+        OLED_ShowString(0, 0, buf, 16);
+    }
     OLED_Refresh();
 }
 

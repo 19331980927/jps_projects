@@ -1,163 +1,176 @@
 [
     {
-        "id": "e8f8d5b.1f17128",
+        "id": "nr_serial_port",
+        "type": "serial-port",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "addchar": "",
+        "newline": "\\n",
+        "bin": "false",
+        "serialbaud": "115200",
+        "serialport": "COM6"
+    },
+    {
+        "id": "nr_serial_in",
         "type": "serial in",
-        "z": "b1c6e8f.d3e9d18",
         "name": "",
-        "serial": "COM3",
-        "x": 110,
-        "y": 160,
+        "serial": "nr_serial_port",
+        "x": 80,
+        "y": 120,
         "wires": [
             [
-                "f3a2b4c.5d6e7f8"
+                "nr_filter"
             ]
         ]
     },
     {
-        "id": "f3a2b4c.5d6e7f8",
-        "type": "json",
-        "z": "b1c6e8f.d3e9d18",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 290,
-        "y": 160,
-        "wires": [
-            [
-                "g4h5i6j.7k8l9m0",
-                "n1o2p3q.4r5s6t7",
-                "u8v9w0x.1y2z3a4",
-                "oled_display_node"
-            ]
-        ]
-    },
-    {
-        "id": "g4h5i6j.7k8l9m0",
+        "id": "nr_filter",
         "type": "function",
-        "z": "b1c6e8f.d3e9d18",
-        "name": "雷达数据处理",
-        "func": "// 存储雷达数据\ncontext.global.radarData = context.global.radarData || new Array(181).fill(0);\n\nvar angle = msg.payload.angle;\nvar distance = msg.payload.distance;\n\n// 更新对应角度的数据\ncontext.global.radarData[angle] = distance;\n\n// 返回处理后的数据\nmsg.payload = {\n    angle: angle,\n    distance: distance,\n    warning: msg.payload.warning,\n    radarData: context.global.radarData\n};\n\nreturn msg;",
+        "name": "过滤非JSON行",
+        "func": "var s = msg.payload;\nif (Buffer.isBuffer(s)) s = s.toString('utf8');\ns = s.trim();\nif (typeof s === 'string') {\n    try {\n        msg.payload = JSON.parse(s);\n        return msg;\n    } catch(e) {}\n}\nreturn null;",
         "outputs": 1,
         "noerr": 0,
-        "x": 470,
+        "x": 140,
         "y": 160,
         "wires": [
             [
-                "b5c6d7e.8f9g0h1"
+                "nr_accum",
+                "nr_debug"
             ]
         ]
     },
     {
-        "id": "b5c6d7e.8f9g0h1",
-        "type": "ui_chart",
-        "z": "b1c6e8f.d3e9d18",
-        "name": "雷达扫描图",
-        "group": "a2b3c4d.5e6f7g8",
-        "order": 1,
-        "width": "12",
-        "height": "8",
-        "label": "雷达扫描图",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": true,
-        "nodata": "",
-        "dot": false,
-        "ymin": "0",
-        "ymax": "100",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "60",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 1,
-        "x": 670,
-        "y": 160,
+        "id": "nr_serial_out",
+        "type": "serial out",
+        "name": "",
+        "serial": "nr_serial_port",
+        "x": 580,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "nr_accum",
+        "type": "function",
+        "name": "雷达累积",
+        "func": "if (msg.payload && msg.payload.type === 'delete_record') {\n    var rid = msg.payload.recordId;\n    var records = flow.get('records') || [];\n    if (rid >= 0 && rid < records.length) {\n        records.splice(rid, 1);\n        for (var k = 0; k < records.length; k++) { records[k].id = k; }\n        flow.set('records', records);\n        var opts = [{label: '-- 选择记录 --', value: -1}];\n        for (var k = 0; k < records.length; k++) {\n            var r = records[k];\n            opts.push({label: '#' + r.id + ' ' + r.time + ' (' + r.pointCount + '点)', value: r.id});\n        }\n        return [{payload: {radarData: (flow.get('radarData') || new Array(181).fill(0)).slice(), currentAngle: 0, currentDistance: 0, warning: 0, blocked: 0}},\n                {payload: {type: 'update_list', recordId: -1, records: records, options: opts}}];\n    }\n    return null;\n}\nvar radarData = flow.get('radarData') || new Array(181).fill(0);\nvar records = flow.get('records') || [];\nvar lastAngle = flow.get('lastAngle') || -1;\nvar direction = flow.get('direction') || 0;\nvar angle = Number(msg.payload.angle);\nvar distance = Number(msg.payload.distance);\nvar warning = Number(msg.payload.warning) || 0;\nvar blocked = Number(msg.payload.blocked) || 0;\nif (angle >= 0 && angle <= 180) { radarData[angle] = distance; }\nvar scanCompleted = false;\nif (lastAngle >= 0) {\n    if (direction === 0 && angle < lastAngle && lastAngle > 170) { direction = 1; scanCompleted = true; }\n    else if (direction === 1 && angle > lastAngle && lastAngle < 10) { direction = 0; scanCompleted = true; }\n}\nflow.set('lastAngle', angle);\nflow.set('direction', direction);\nflow.set('radarData', radarData);\nvar out1 = {payload: {radarData: radarData.slice(), currentAngle: angle, currentDistance: distance, warning: warning, blocked: blocked}};\nvar out2 = null;\nif (scanCompleted) {\n    var points = [];\n    for (var a = 0; a <= 180; a++) { if (radarData[a] > 2.0 && radarData[a] <= 250.0) { points.push({angle: a, distance: parseFloat(radarData[a].toFixed(1))}); } }\n    var now = new Date();\n    var ts = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0') + ':' + now.getSeconds().toString().padStart(2,'0');\n    records.push({id: records.length, time: ts, points: points, pointCount: points.length});\n    if (records.length > 50) records = records.slice(-50);\n    flow.set('records', records);\n    var options = [{label: '-- 选择记录 --', value: -1}];\n    for (var i = 0; i < records.length; i++) { var r = records[i]; options.push({label: '#' + r.id + ' ' + r.time + ' (' + r.pointCount + '点)', value: r.id}); }\n    out2 = {payload: {type: 'update_list', recordId: -1, records: records, options: options}};\n}\nreturn [out1, out2];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 280,
+        "y": 200,
         "wires": [
-            []
+            [
+                "nr_chart",
+                "nr_extract_dist",
+                "nr_status"
+            ],
+            [
+                "nr_records"
+            ]
         ]
     },
     {
-        "id": "n1o2p3q.4r5s6t7",
+        "id": "nr_chart",
+        "type": "ui_template",
+        "name": "极坐标雷达图",
+        "group": "nr_group",
+        "order": 1,
+        "width": "12",
+        "height": "10",
+        "format": "<style>\n#rcWrap { position:relative; width:100%; max-width:620px; margin:0 auto }\n#rcCanvas { display:block; width:100%; height:auto; background:#0a0a1a; border-radius:8px; cursor:crosshair; touch-action:none }\n#rcTip { position:absolute; background:rgba(0,0,0,0.85); color:#0f0; padding:6px 12px; border:1px solid #0f0; border-radius:4px; font:14px monospace; pointer-events:none; display:none; z-index:10 }\n#rcInfo { margin-top:4px; font:13px monospace; color:#ccc; text-align:center }\n.grn { color:#0f0 } .red { color:#f44 } .blu { color:#4af }\n</style>\n<div id=\"rcWrap\"><canvas id=\"rcCanvas\" width=\"600\" height=\"380\"></canvas><div id=\"rcTip\"></div></div>\n<div id=\"rcInfo\">等待数据...</div>\n<script>\n(function(scope){\nvar cv=document.getElementById('rcCanvas'),cx=cv.getContext('2d'),tip=document.getElementById('rcTip'),inf=document.getElementById('rcInfo');\nvar sa=-1,W=600,H=380,ox=300,oy=345,mR=300,mD=250;\nvar lastData=[],lastCA=0,lastCD=0,lastW=0,lastBl=0;\nvar msgCount=0;\nfunction a2xy(a,d){var r=Math.PI+a*Math.PI/180,rr=(d/mD)*mR;return{x:ox+rr*Math.cos(r),y:oy+rr*Math.sin(r)}}\nfunction x2ad(mx,my){var dx=mx-ox,dy=my-oy,rr=Math.sqrt(dx*dx+dy*dy);if(rr<2)return null;var ra=Math.atan2(dy,dx);if(ra<0)ra+=2*Math.PI;var a=(ra-Math.PI)*180/Math.PI;return{a:a,d:(rr/mR)*mD,r:rr}}\nfunction draw(d,ca,cd,w,bl){\ncx.clearRect(0,0,W,H);\nfor(var dd=50;dd<=mD;dd+=50){var r=(dd/mD)*mR;cx.beginPath();cx.arc(ox,oy,r,Math.PI,2*Math.PI);cx.strokeStyle=dd%100===0?'rgba(0,255,0,0.25)':'rgba(0,255,0,0.1)';cx.lineWidth=dd%100===0?1:0.5;cx.stroke();cx.fillStyle='rgba(0,255,0,0.35)';cx.font='10px monospace';cx.fillText(dd+'cm',ox+r/2-12,oy-4)}\nfor(var aa=0;aa<=180;aa+=30){var p=a2xy(aa,mD*0.92);cx.beginPath();cx.moveTo(ox,oy);cx.lineTo(p.x,p.y);cx.strokeStyle='rgba(0,255,0,0.12)';cx.lineWidth=0.5;cx.stroke();cx.fillStyle='rgba(0,255,0,0.4)';cx.font='11px monospace';cx.textAlign='center';cx.fillText(aa+'deg',p.x,p.y-6)}\ncx.beginPath();cx.arc(ox,oy,mR,Math.PI,2*Math.PI);cx.strokeStyle='rgba(0,255,0,0.3)';cx.lineWidth=1.5;cx.stroke();\nif(!d||!d.length){cx.fillStyle='#555';cx.font='16px monospace';cx.textAlign='center';cx.fillText('等待扫描数据...',ox,oy-40);return}\nvar pts=[];for(var a=0;a<=180;a++){var v=d[a]||0;if(v>2&&v<=mD){pts.push(a2xy(a,v))}}\nif(pts.length>1){cx.beginPath();for(var i=0;i<pts.length;i++){if(i===0)cx.moveTo(pts[i].x,pts[i].y);else cx.lineTo(pts[i].x,pts[i].y)}cx.strokeStyle='#0f0';cx.lineWidth=1.5;cx.stroke()}\nfor(var a=0;a<=180;a++){var v=d[a]||0;if(v>2&&v<=mD){var p=a2xy(a,v),iw=v<30,is=(a===sa);cx.beginPath();cx.arc(p.x,p.y,is?5:(iw?4:3),0,Math.PI*2);cx.fillStyle=is?'#ff0':(iw?'#f44':'#0f0');cx.fill();if(is){cx.strokeStyle='#fff';cx.lineWidth=2;cx.stroke()}}}\nif(ca>=0&&ca<=180){var pe=a2xy(ca,mR*0.85);cx.beginPath();cx.moveTo(ox,oy);cx.lineTo(pe.x,pe.y);cx.strokeStyle='rgba(255,255,0,0.8)';cx.lineWidth=2;cx.setLineDash([6,3]);cx.stroke();cx.setLineDash([]);cx.beginPath();cx.arc(pe.x,pe.y,5,0,Math.PI*2);cx.fillStyle='#ff0';cx.fill();cx.strokeStyle='rgba(255,255,255,0.8)';cx.lineWidth=1;cx.stroke()}\nvar h='角度:<span class=\"grn\">'+ca+'deg</span> | 距离:<span class=\"grn\">'+(cd?cd.toFixed(1):'---')+'cm</span> | 消息:<span class=\"blu\">'+msgCount+'</span>';if(bl)h+=' | <span class=\"red\">模块被遮挡</span>';else if(w)h+=' | <span class=\"red\">障碍物过近!</span>';if(sa>=0&&d[sa]>0)h+=' | 选中:<span class=\"blu\">'+sa+'deg/'+d[sa].toFixed(1)+'cm</span>';inf.innerHTML=h}\ncv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect(),sx=cv.width/r.width,sy=cv.height/r.height,mx=(e.clientX-r.left)*sx,my=(e.clientY-r.top)*sy,res=x2ad(mx,my);if(!res||res.a<0||res.a>180){tip.style.display='none';return}tip.style.display='block';tip.style.left=(e.clientX-r.left+12)+'px';tip.style.top=(e.clientY-r.top-20)+'px';tip.innerHTML='A:'+Math.round(res.a)+'deg D:'+res.d.toFixed(0)+'cm'});\ncv.addEventListener('mouseleave',function(){tip.style.display='none'});\ncv.addEventListener('click',function(e){var r=cv.getBoundingClientRect(),sx=cv.width/r.width,sy=cv.height/r.height,mx=(e.clientX-r.left)*sx,my=(e.clientY-r.top)*sy,res=x2ad(mx,my);if(!res)return;var caa=Math.round(res.a);if(caa<0||caa>180)return;var ni=-1,md=999;var dd=lastData;for(var a=0;a<=180;a++){if(dd&&dd[a]>2&&dd[a]<=mD){var df=Math.abs(a-caa);if(df<md){md=df;ni=a}}}sa=(ni>=0&&md<=10)?ni:-1;draw(lastData||[],lastCA,lastCD,lastW,lastBl)});\nfunction up(){var m=scope.msg;if(m&&m.payload&&m.payload.radarData){var p=m.payload;if(!lastData.length||p.radarData!==lastData){lastData=p.radarData}var a=p.currentAngle!==undefined?p.currentAngle:lastCA;if(a!==lastCA)msgCount++;lastCA=a;lastCD=p.currentDistance!==undefined?p.currentDistance:lastCD;lastW=p.warning!==undefined?p.warning:lastW;lastBl=p.blocked!==undefined?p.blocked:lastBl}}\nscope.$watch(function(){var m=scope.msg;return m&&m.payload&&m.payload.currentAngle},function(v,o){if(v!==undefined)up()});\nup();\nsetInterval(function(){up();draw(lastData,lastCA,lastCD,lastW,lastBl)},100)\n})(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 580,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "nr_extract_dist",
+        "type": "function",
+        "name": "提取距离值",
+        "func": "// 从累积数据中提取当前距离值给仪表盘\nmsg.payload = msg.payload.currentDistance;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 440,
+        "y": 200,
+        "wires": [
+            [
+                "nr_gauge"
+            ]
+        ]
+    },
+    {
+        "id": "nr_gauge",
         "type": "ui_gauge",
-        "z": "b1c6e8f.d3e9d18",
         "name": "距离仪表盘",
-        "group": "a2b3c4d.5e6f7g8",
+        "group": "nr_group",
         "order": 2,
-        "width": "6",
-        "height": "4",
+        "width": "4",
+        "height": "3",
         "units": "cm",
         "min": 0,
-        "max": "100",
-        "name2": "距离",
+        "max": "250",
+        "name2": "当前距离",
         "format": "{{value}}",
         "layout": "radial",
         "theme": "theme-light",
-        "x": 470,
-        "y": 240,
+        "x": 580,
+        "y": 200,
         "wires": []
     },
     {
-        "id": "u8v9w0x.1y2z3a4",
+        "id": "nr_status",
         "type": "ui_text",
-        "z": "b1c6e8f.d3e9d18",
-        "name": "预警提示",
-        "group": "a2b3c4d.5e6f7g8",
+        "name": "状态显示",
+        "group": "nr_group",
         "order": 3,
-        "width": "6",
-        "height": "2",
+        "width": "4",
+        "height": "3",
         "name2": "状态",
-        "format": "{{msg.payload.warning ? '⚠️ 警告：障碍物过近！' : '✅ 安全'}}",
-        "layout": "row-spread",
+        "format": "{{msg.payload.blocked ? '模块被遮挡' : (msg.payload.warning ? '障碍物过近!' : '运行正常')}}",
+        "layout": "row-center",
         "style": {
             "color": {
-                "value": "{{msg.payload.warning ? 'red' : 'green'}}"
+                "value": "{{msg.payload.blocked || msg.payload.warning ? '#f44' : '#0f0'}}"
             },
-            "fontSize": "20px"
+            "fontSize": "18px",
+            "fontWeight": "bold"
         },
-        "x": 470,
-        "y": 320,
+        "x": 580,
+        "y": 280,
         "wires": []
     },
     {
-        "id": "oled_display_node",
-        "type": "ui_text",
-        "z": "b1c6e8f.d3e9d18",
-        "name": "OLED显示模式",
-        "group": "a2b3c4d.5e6f7g8",
-        "order": 8,
-        "width": "12",
-        "height": "2",
-        "name2": "OLED状态",
-        "format": "{{msg.payload.display_mode === 1 ? '📺 OLED: 雷达图模式' : '📺 OLED: 文本模式'}}",
-        "layout": "row-spread",
-        "x": 470,
-        "y": 400,
-        "wires": []
+        "id": "nr_records",
+        "type": "ui_template",
+        "name": "记录浏览",
+        "group": "nr_group",
+        "order": 4,
+        "width": "8",
+        "height": "8",
+        "format": "<style>\n#rs{display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap}\n#rs select{flex:1;min-width:180px;padding:6px 10px;font-size:14px;border:1px solid #555;border-radius:4px;background:#1a1a2e;color:#0f0;font-family:monospace;cursor:pointer}\n#rs button{padding:6px 14px;font-size:13px;border:1px solid #555;border-radius:4px;background:#1a1a2e;color:#0f0;cursor:pointer;font-family:monospace}\n#rs button:hover{background:#2a2a4e}\n#rs label{color:#aaa;font-size:13px;font-family:monospace}\n#rtw{max-height:260px;overflow-y:auto;border:1px solid #333;border-radius:4px}\n#rt{width:100%;border-collapse:collapse;font-family:monospace;font-size:12px}\n#rt th{position:sticky;top:0;background:#1a1a2e;color:#0f0;padding:6px 10px;text-align:left;border-bottom:2px solid #0f0}\n#rt td{padding:4px 10px;border-bottom:1px solid #222;color:#ccc}\n#rt tr:hover td{background:rgba(0,255,0,0.08);color:#fff}\n#rt .w td{color:#f44}\n#ri{margin-top:6px;font:12px monospace;color:#888}\n#re{color:#555;text-align:center;padding:40px 0;font:14px monospace}\n</style>\n<div id=\"rs\"><label>记录:</label><select id=\"rsel\"><option value=\"-1\">-- 选择记录 --</option></select><button id=\"rdel\">删除</button></div>\n<div id=\"rtw\">\n<div id=\"re\">等待记录数据...</div>\n<table id=\"rt\" style=\"display:none\"><thead><tr><th>角度</th><th>距离(cm)</th><th>状态</th></tr></thead><tbody id=\"rtb\"></tbody></table>\n</div>\n<div id=\"ri\"></div>\n<script>\n(function(scope){\nvar sel=document.getElementById('rsel'),tb=document.getElementById('rtb'),tbl=document.getElementById('rt'),em=document.getElementById('re'),inf=document.getElementById('ri'),del=document.getElementById('rdel'),recs=[];\nfunction render(pts){tb.innerHTML='';if(!pts||!pts.length){em.style.display='block';tbl.style.display='none';inf.textContent='该记录无有效数据点';return}\nem.style.display='none';tbl.style.display='';var h='';\nfor(var i=0;i<pts.length;i++){var p=pts[i];h+='<tr'+(p.distance<30?' class=\"w\"':'')+'><td>'+p.angle+'deg</td><td>'+p.distance.toFixed(1)+'</td><td>'+(p.distance<30?'过近':'正常')+'</td></tr>'}\ntb.innerHTML=h;inf.textContent='共 '+pts.length+' 个点位'}\nfunction updOpts(opts){sel.innerHTML='';if(!opts)return;for(var i=0;i<opts.length;i++){var o=document.createElement('option');o.value=opts[i].value;o.textContent=opts[i].label;sel.appendChild(o)}}\nsel.addEventListener('change',function(){var id=parseInt(sel.value);if(id<0||!recs[id]){render([]);return}render(recs[id].points)});\ndel.addEventListener('click',function(){var id=parseInt(sel.value);if(id>=0&&recs[id]){scope.send({payload:{type:'delete_record',recordId:id}})}});\nscope.$watch('msg',function(msg){if(!msg||!msg.payload)return;var p=msg.payload;if(p.type==='update_list'&&p.options){recs=p.records||[];updOpts(p.options);var cv=parseInt(sel.value);if(cv>=0&&recs[cv]){render(recs[cv].points)}else{render([])}}},true);\n})(scope);\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 820,
+        "y": 280,
+        "wires": [
+            [
+                "nr_accum"
+            ]
+        ]
     },
     {
-        "id": "i9j0k1l.2m3n4o5",
+        "id": "nr_slider",
         "type": "ui_slider",
-        "z": "b1c6e8f.d3e9d18",
         "name": "角度控制",
         "label": "舵机角度",
-        "tooltip": "",
-        "group": "a2b3c4d.5e6f7g8",
-        "order": 4,
+        "tooltip": "拖动设置角度",
+        "group": "nr_group",
+        "order": 5,
         "width": "6",
         "height": "1",
         "passthru": true,
@@ -165,206 +178,125 @@
         "max": "180",
         "step": 1,
         "topic": "angle",
-        "x": 110,
+        "x": 200,
         "y": 480,
         "wires": [
             [
-                "p6q7r8s.9t0u1v2"
+                "nr_angle_cmd"
             ]
         ]
     },
     {
-        "id": "p6q7r8s.9t0u1v2",
+        "id": "nr_angle_cmd",
         "type": "function",
-        "z": "b1c6e8f.d3e9d18",
-        "name": "生成角度命令",
+        "name": "生成角度JSON",
         "func": "msg.payload = JSON.stringify({angle: msg.payload});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 290,
+        "x": 380,
         "y": 480,
         "wires": [
             [
-                "w3x4y5z.6a7b8c9"
+                "nr_serial_out"
             ]
         ]
     },
     {
-        "id": "w3x4y5z.6a7b8c9",
-        "type": "serial out",
-        "z": "b1c6e8f.d3e9d18",
-        "name": "",
-        "serial": "COM3",
-        "x": 470,
-        "y": 480,
-        "wires": []
-    },
-    {
-        "id": "d0e1f2g.3h4i5j6",
+        "id": "nr_btn_auto",
         "type": "ui_button",
-        "z": "b1c6e8f.d3e9d18",
         "name": "自动扫描",
-        "group": "a2b3c4d.5e6f7g8",
-        "order": 5,
-        "width": "3",
+        "group": "nr_group",
+        "order": 6,
+        "width": "2",
         "height": "1",
         "label": "自动扫描",
-        "tooltip": "",
+        "tooltip": "切换自动扫描模式",
         "color": "",
         "bgcolor": "",
         "icon": "",
         "payload": "auto",
         "payloadType": "str",
         "topic": "mode",
-        "x": 110,
+        "x": 100,
         "y": 560,
         "wires": [
             [
-                "k7l8m9n.0o1p2q3"
+                "nr_mode_cmd"
             ]
         ]
     },
     {
-        "id": "r4s5t6u.7v8w9x0",
+        "id": "nr_btn_manual",
         "type": "ui_button",
-        "z": "b1c6e8f.d3e9d18",
         "name": "手动模式",
-        "group": "a2b3c4d.5e6f7g8",
-        "order": 6,
-        "width": "3",
+        "group": "nr_group",
+        "order": 7,
+        "width": "2",
         "height": "1",
         "label": "手动模式",
-        "tooltip": "",
+        "tooltip": "切换手动模式",
         "color": "",
         "bgcolor": "",
         "icon": "",
         "payload": "manual",
         "payloadType": "str",
         "topic": "mode",
-        "x": 110,
+        "x": 100,
         "y": 620,
         "wires": [
             [
-                "k7l8m9n.0o1p2q3"
+                "nr_mode_cmd"
             ]
         ]
     },
     {
-        "id": "k7l8m9n.0o1p2q3",
+        "id": "nr_mode_cmd",
         "type": "function",
-        "z": "b1c6e8f.d3e9d18",
-        "name": "生成模式命令",
-        "func": "var mode = msg.payload;\nmsg.payload = JSON.stringify({mode: mode});\nreturn msg;",
+        "name": "生成模式JSON",
+        "func": "msg.payload = JSON.stringify({mode: msg.payload});\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 290,
+        "x": 300,
         "y": 590,
         "wires": [
             [
-                "w3x4y5z.6a7b8c9"
+                "nr_serial_out"
             ]
         ]
     },
     {
-        "id": "display_mode_toggle",
-        "type": "ui_button",
-        "z": "b1c6e8f.d3e9d18",
-        "name": "切换OLED显示",
-        "group": "a2b3c4d.5e6f7g8",
-        "order": 7,
-        "width": "6",
-        "height": "1",
-        "label": "切换OLED显示模式",
-        "tooltip": "在文本模式和雷达图模式之间切换",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "1",
-        "payloadType": "num",
-        "topic": "display_mode",
-        "x": 110,
-        "y": 680,
-        "wires": [
-            [
-                "display_mode_func"
-            ]
-        ]
-    },
-    {
-        "id": "display_mode_func",
-        "type": "function",
-        "z": "b1c6e8f.d3e9d18",
-        "name": "切换显示模式",
-        "func": "// 切换显示模式\ncontext.global.displayMode = (context.global.displayMode || 0) === 0 ? 1 : 0;\nmsg.payload = JSON.stringify({display_mode: context.global.displayMode});\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 310,
-        "y": 680,
-        "wires": [
-            [
-                "w3x4y5z.6a7b8c9"
-            ]
-        ]
-    },
-    {
-        "id": "remote_control_toggle",
-        "type": "ui_switch",
-        "z": "b1c6e8f.d3e9d18",
-        "name": "远程控制",
-        "label": "启用远程控制",
-        "tooltip": "启用后可通过Node-RED控制OLED显示",
-        "group": "a2b3c4d.5e6f7g8",
-        "order": 9,
-        "width": "6",
-        "height": "1",
-        "onlabel": "开启",
-        "onvalue": "1",
-        "oncolor": "",
-        "offlabel": "关闭",
-        "offvalue": "0",
-        "offcolor": "",
-        "style": "",
-        "x": 110,
-        "y": 740,
-        "wires": [
-            [
-                "remote_control_func"
-            ]
-        ]
-    },
-    {
-        "id": "remote_control_func",
-        "type": "function",
-        "z": "b1c6e8f.d3e9d18",
-        "name": "远程控制命令",
-        "func": "msg.payload = JSON.stringify({remote_control: msg.payload});\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 310,
-        "y": 740,
-        "wires": [
-            [
-                "w3x4y5z.6a7b8c9"
-            ]
-        ]
-    },
-    {
-        "id": "a2b3c4d.5e6f7g8",
+        "id": "nr_group",
         "type": "ui_group",
         "name": "雷达控制面板",
-        "tab": "z1y2x3w.4v5u6t7",
+        "tab": "nr_tab",
         "order": 1,
         "disp": true,
         "width": "12",
         "collapse": false
     },
     {
-        "id": "z1y2x3w.4v5u6t7",
+        "id": "nr_tab",
         "type": "ui_tab",
         "name": "雷达系统",
         "icon": "dashboard",
         "order": 1,
         "disabled": false,
         "hidden": false
+    },
+    {
+        "id": "nr_debug",
+        "type": "debug",
+        "name": "串口数据",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 300,
+        "y": 100,
+        "wires": []
     }
 ]

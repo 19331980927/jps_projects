@@ -1,0 +1,179 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - img "Node-RED" [ref=e5]
+      - generic "Node-RED" [ref=e6]
+    - generic [ref=e8]:
+      - text: 
+      - list [ref=e10]:
+        - listitem [ref=e11]:
+          - link "Servo Test" [ref=e12] [cursor=pointer]:
+            - /url: "#tab_servo"
+            - text:   Servo Test
+          - generic: 
+      - generic [ref=e13]: 
+      - link "添加流程" [ref=e15] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e16]: 
+      - link "Tab menu" [ref=e18] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e19]: 
+    - list [ref=e21]:
+      - listitem [ref=e22]:
+        - generic [ref=e23]:
+          - link "部署" [ref=e24]:
+            - /url: "#"
+            - generic [ref=e25]: 部署
+          - link "Deploy options" [ref=e26] [cursor=pointer]:
+            - /url: "#"
+            - generic [ref=e27]: 
+            - text: 
+          - text:      
+      - text: 
+      - listitem [ref=e28]:
+        - link "Main menu" [ref=e29] [cursor=pointer]:
+          - /url: "#"
+          - generic [ref=e30]: 
+        - text:    
+  - generic [ref=e31]:
+    - generic [ref=e32]:
+      - text:                            
+      - text:                 
+    - generic [ref=e35]:
+      - img [ref=e37]:
+        - generic [ref=e68]:
+          - generic [ref=e69]:
+            - generic:
+              - generic: 串口
+            - generic [ref=e74]: 已连接
+          - generic [ref=e77]:
+            - generic:
+              - generic: 过滤非JSON行
+          - generic [ref=e83]:
+            - generic:
+              - generic: 串口
+            - generic [ref=e88]: 已连接
+          - generic [ref=e91]:
+            - generic:
+              - generic: 雷达累积
+          - generic [ref=e99]:
+            - generic:
+              - generic: 极坐标雷达图
+          - generic [ref=e105]:
+            - generic:
+              - generic: 提取距离值
+          - generic [ref=e111]:
+            - generic:
+              - generic: 距离仪表盘
+          - generic [ref=e115]:
+            - generic:
+              - generic: 状态显示
+          - generic [ref=e119]:
+            - generic:
+              - generic: 记录浏览
+          - generic [ref=e125]:
+            - generic:
+              - generic: 角度控制
+            - generic [ref=e130]: "140"
+          - generic [ref=e135]:
+            - generic:
+              - generic: 生成角度JSON
+          - generic [ref=e141]:
+            - generic:
+              - generic: 自动扫描
+          - generic [ref=e147]:
+            - generic:
+              - generic: 手动模式
+          - generic [ref=e153]:
+            - generic:
+              - generic: 生成模式JSON
+      - generic:
+        - generic:
+          - generic:
+            - button "切换导航器" [ref=e161] [cursor=pointer]:
+              - generic [ref=e162]: 
+            - generic [ref=e164]:
+              - button "缩小" [ref=e165] [cursor=pointer]:
+                - generic [ref=e166]: 
+              - button "重设缩放" [ref=e167] [cursor=pointer]:
+                - generic [ref=e168]: 
+              - button "放大" [ref=e169] [cursor=pointer]:
+                - generic [ref=e170]: 
+              - button "Zoom to fit" [ref=e171] [cursor=pointer]:
+                - generic [ref=e172]: 
+            - button "" [ref=e174] [cursor=pointer]:
+              - generic [ref=e175]: 
+        - generic:
+          - generic:
+            - button "Explorer" [ref=e177] [cursor=pointer]
+            - button "Palette" [ref=e180] [cursor=pointer]
+            - generic [ref=e182]:
+              - button "节点信息" [ref=e183] [cursor=pointer]:
+                - generic [ref=e184]: 
+              - button "帮助" [ref=e185] [cursor=pointer]:
+                - generic [ref=e186]: 
+              - button "配置节点" [ref=e187] [cursor=pointer]:
+                - generic [ref=e188]: 
+              - button "上下文数据" [ref=e189] [cursor=pointer]:
+                - generic [ref=e190]: 
+              - button "Dashboard" [ref=e191] [cursor=pointer]:
+                - generic [ref=e192]: 
+            - button "名称" [ref=e194] [cursor=pointer]:
+              - generic [ref=e195]: 
+            - generic [ref=e196]:
+              - text: 
+              - button "Toggle left sidebar" [expanded] [ref=e197] [cursor=pointer]
+              - button "切换侧边栏" [expanded] [ref=e199] [cursor=pointer]
+    - generic [ref=e207]:
+      - generic [ref=e208]:
+        - generic [ref=e209]:
+          - generic [ref=e211]: 
+          - generic [ref=e212]: 帮助
+        - generic [ref=e213]:
+          - text:      
+          - generic [ref=e215]:
+            - generic [ref=e216]:
+              - link "Hide topics" [ref=e218] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e219]: 
+              - generic [ref=e220]:
+                - generic: 
+                - textbox "搜索帮助" [ref=e222]
+                - text: 
+            - generic [ref=e223]:
+              - list [ref=e229]:
+                - listitem [ref=e230]:
+                  - generic [ref=e231]:
+                    - generic [ref=e232] [cursor=pointer]:
+                      - generic [ref=e234]: 
+                      - generic [ref=e235]: Node-RED
+                    - generic:
+                      - generic:        
+                - listitem [ref=e236]:
+                  - generic [ref=e237]:
+                    - generic [ref=e238] [cursor=pointer]:
+                      - generic [ref=e240]: 
+                      - generic [ref=e241]: 节点帮助
+                    - list [ref=e244]:
+                      - listitem [ref=e245]:
+                        - generic [ref=e247] [cursor=pointer]:
+                          - generic [ref=e249]: 
+                          - generic [ref=e251]: 
+                          - generic [ref=e252]: node-red
+                      - listitem [ref=e253]:
+                        - generic [ref=e255] [cursor=pointer]:
+                          - generic [ref=e257]: 
+                          - generic [ref=e259]: 
+                          - generic [ref=e260]: node-red-dashboard
+                      - listitem [ref=e261]:
+                        - generic [ref=e263] [cursor=pointer]:
+                          - generic [ref=e265]: 
+                          - generic [ref=e267]: 
+                          - generic [ref=e268]: node-red-node-serialport
+              - generic [ref=e271]: 未选择帮助主题
+          - text:                                                                 
+        - text:  
+      - text:       
+  - text: 
+  - generic [ref=e273]: serial control
+  - generic: 生成模式JSON
