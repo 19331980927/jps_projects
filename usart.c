@@ -70,32 +70,17 @@ int fputc(int ch, FILE *f)
 // USART1中断服务函数
 void USART1_IRQHandler(void)
 {
-    extern uint8_t scan_mode;
-    extern uint8_t display_mode;
+    extern void Process_Remote_Command(char *cmd);
     static char rx_buffer[128];
     static uint8_t rx_index = 0;
-    extern void Process_Remote_Command(char *cmd);
     
     if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)
     {
         uint8_t data = USART_ReceiveData(USART1);
         
-        // 简单命令解析
-        if(data == 'A' || data == 'a')
+        // JSON命令接收
+        if(data == '{' || rx_index > 0)
         {
-            scan_mode = 1;  // 自动模式
-        }
-        else if(data == 'M' || data == 'm')
-        {
-            scan_mode = 0;  // 手动模式
-        }
-        else if(data == 'D' || data == 'd')
-        {
-            display_mode = !display_mode;  // 切换显示模式
-        }
-        else if(data == '{' || rx_index > 0)
-        {
-            // JSON命令接收
             rx_buffer[rx_index++] = data;
             if(data == '}' || rx_index >= 127)
             {

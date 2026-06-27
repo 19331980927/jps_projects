@@ -172,7 +172,24 @@ int main(void)
         }
         else
         {
+            // 手动模式：检测串口命令设定的角度变化
+            static uint16_t last_remote_angle = 999;
             Manual_Control();
+            if(current_angle != last_remote_angle)
+            {
+                last_remote_angle = current_angle;
+                Servo_SetAngle(current_angle);
+                delay_ms(80);
+                float raw = Ultrasonic_GetDistance();
+                if(raw >= 2.0f && raw <= 250.0f)
+                {
+                    current_distance = raw;
+                    scan_data[current_angle] = (uint16_t)(raw * 10);
+                }
+                scan_trail[trail_head] = current_angle;
+                trail_head = (trail_head + 1) % 90;
+                if(trail_count < 90) trail_count++;
+            }
         }
 
         if(display_mode == 1)
@@ -420,9 +437,10 @@ void Process_Remote_Command(char *cmd)
     
     JSON_ParseCommand(cmd);
     
-    // 手动模式下收到角度命令，立即驱动舵机
-    if(scan_mode == 0 && strstr(cmd, "\"angle\":"))
+    // 收到任何角度命令都直接驱动舵机
+    if(strstr(cmd, "\"angle\":"))
     {
+        printf("ANGLE CMD: set servo to %d\r\n", current_angle);
         Servo_SetAngle(current_angle);
     }
 }
