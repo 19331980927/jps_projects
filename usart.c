@@ -26,11 +26,21 @@ void USART1_Init(uint32_t baudrate)
     USART_InitStructure.USART_StopBits = USART_StopBits_1;
     USART_InitStructure.USART_Parity = USART_Parity_No;
     USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
-    USART_InitStructure.USART_Mode = USART_Mode_Tx;  // 只使用发送
+    USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;  // 收发双工
     USART_Init(USART1, &USART_InitStructure);
 
     // 使能USART
     USART_Cmd(USART1, ENABLE);
+
+    // 使能接收中断
+    USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
+
+    // 配置NVIC
+    NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
 
     // 清除标志位
     USART_ClearFlag(USART1, USART_FLAG_TC);
@@ -61,12 +71,10 @@ int fputc(int ch, FILE *f)
 void USART1_IRQHandler(void)
 {
     extern uint8_t scan_mode;
-#ifdef ENABLE_EXTENDED_FEATURES
     extern uint8_t display_mode;
     static char rx_buffer[128];
     static uint8_t rx_index = 0;
     extern void Process_Remote_Command(char *cmd);
-#endif
     
     if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)
     {
@@ -81,16 +89,13 @@ void USART1_IRQHandler(void)
         {
             scan_mode = 0;  // 手动模式
         }
-        
-#ifdef ENABLE_EXTENDED_FEATURES
         else if(data == 'D' || data == 'd')
         {
             display_mode = !display_mode;  // 切换显示模式
         }
-        
-        // JSON命令接收
-        if(data == '{' || rx_index > 0)
+        else if(data == '{' || rx_index > 0)
         {
+            // JSON命令接收
             rx_buffer[rx_index++] = data;
             if(data == '}' || rx_index >= 127)
             {
@@ -99,7 +104,6 @@ void USART1_IRQHandler(void)
                 rx_index = 0;
             }
         }
-#endif
         
         USART_ClearITPendingBit(USART1, USART_IT_RXNE);
     }

@@ -22,8 +22,8 @@
  * USART1: TX-PA10, RX-PA9 (波特率115200)
  */
 
-// 扩展功能开关：暂时禁用以调试
-// #define ENABLE_EXTENDED_FEATURES
+// 扩展功能开关
+#define ENABLE_EXTENDED_FEATURES
 
 // 全局变量
 uint8_t scan_mode = 0;  // 0:手动, 1:自动扫描
@@ -35,6 +35,7 @@ uint16_t scan_data[181];      // 扫描数据缓存(0-180度)
 
 uint8_t display_mode = 1;  // 0:文本显示, 1:雷达图显示
 uint8_t remote_control = 0;  // 远程控制标志
+uint8_t clear_flag = 0;      // 清屏通知Node-RED
 
 // 扫描轨迹（保留最近扫描过的角度，形成扇形）
 uint16_t scan_trail[90];
@@ -104,7 +105,7 @@ static void led_blink_toggle(void)
 {
     LED_Toggle();
 }
-// 清除所有扫描数据
+// 清除所有扫描数据（含EEPROM清零）
 void Clear_Scan_Data(void)
 {
     uint16_t i;
@@ -113,6 +114,16 @@ void Clear_Scan_Data(void)
     trail_count = 0;
     trail_head = 0;
     AT24C64_Write_Data(0, (uint8_t*)scan_data, sizeof(scan_data));
+}
+
+// 仅清空内存（不动EEPROM），长按保存后使用
+void Reset_Scan_Data(void)
+{
+    uint16_t i;
+    for(i = 0; i < 181; i++)
+        scan_data[i] = 0;
+    trail_count = 0;
+    trail_head = 0;
 }
 
 int main(void)
@@ -139,10 +150,12 @@ int main(void)
 
             if(hold_cnt >= 100)
             {
-                // 长按2秒：清除数据
-                Clear_Scan_Data();
+                // 长按2秒：保存EEPROM + 清屏重新开始
+                Save_Scan_Data();
+                Reset_Scan_Data();
+                clear_flag = 1;
                 OLED_Clear();
-                OLED_ShowString(16, 2, "DATA CLEARED", 16);
+                OLED_ShowString(16, 2, "DATA SAVED", 16);
                 OLED_Refresh();
                 delay_ms(1000);
             }
@@ -198,12 +211,12 @@ void Auto_Scan(void)
     if(direction == 0)
     {
         angle += 2;
-        if(angle >= 180) { direction = 1; Save_Scan_Data(); }
+        if(angle >= 180) { direction = 1; }
     }
     else
     {
         angle -= 2;
-        if(angle <= 0) { direction = 0; Save_Scan_Data(); }
+        if(angle <= 0) { direction = 0; }
     }
     
     Servo_SetAngle(angle);
@@ -362,9 +375,11 @@ void OLED_Display(void)
 void Send_Data_To_NodeRED(void)
 {
     char json_buf[128];
+    uint8_t clr = clear_flag;
+    clear_flag = 0;
     
-    sprintf(json_buf, "{\"angle\":%d,\"distance\":%.1f,\"warning\":%d,\"blocked\":%d,\"display_mode\":%d}",
-            current_angle, current_distance, warning_flag, blocked_flag, display_mode);
+    sprintf(json_buf, "{\"angle\":%d,\"distance\":%.1f,\"warning\":%d,\"blocked\":%d,\"display_mode\":%d,\"clear\":%d}",
+            current_angle, current_distance, warning_flag, blocked_flag, display_mode, clr);
     
     printf("%s\r\n", json_buf);
 }
@@ -401,15 +416,13 @@ void OLED_DrawRadarDisplay(void)
 // 处理远程命令
 void Process_Remote_Command(char *cmd)
 {
-    if(strstr(cmd, "\"display_mode\":1"))
-        display_mode = 1;
-    else if(strstr(cmd, "\"display_mode\":0"))
-        display_mode = 0;
-
-    if(strstr(cmd, "\"remote_control\":1"))
-        remote_control = 1;
-    else if(strstr(cmd, "\"remote_control\":0"))
-        remote_control = 0;
-
+    printf("CMD:%s\r\n", cmd);
+    
     JSON_ParseCommand(cmd);
+    
+    // 手动模式下收到角度命令，立即驱动舵机
+    if(scan_mode == 0 && strstr(cmd, "\"angle\":"))
+    {
+        Servo_SetAngle(current_angle);
+    }
 }
